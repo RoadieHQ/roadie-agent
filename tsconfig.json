@@ -1,5 +1,5 @@
 {
-  "include": ["./src"],
+  "include": ["./src", "./config"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "target": "es2017",
@@ -22,7 +22,7 @@
         Allow using e.g. `import '@/sample-module' instead of using relative paths.
         This makes import paths easier to manage, since it keeps you out of
         relative-path-hell (e.g. '../../../../lib/sample-module' turns into '@/sample-module').
-        
+
         The tsc compiler *does not* convert these to functional paths. This project uses
         `tsc-alias` after compiling (using `npm run build`) to convert after compile.
         Other options include using Babel with the module resolution extension.

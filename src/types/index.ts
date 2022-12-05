@@ -47,7 +47,7 @@ export type RoadieAgentConfiguration = {
   identifier: string;
 
   /**
-   * Path to the broker client accept file to use. Defaults to config/accept
+   * Path to the broker client accept file to use. Defaults to config/accept.json
    */
   accept: string;
 };

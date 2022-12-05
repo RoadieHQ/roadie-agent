@@ -19,7 +19,7 @@ export class RoadieAgent {
       server: 'http://localhost:7341',
       port: 7342,
       identifier: 'example',
-      accept: 'config/provider-accept.json',
+      accept: 'config/accept.json',
       agentPort: 7044,
     },
   ) {

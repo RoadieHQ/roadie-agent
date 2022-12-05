@@ -5,12 +5,15 @@ import {
   HandlerConfig,
 } from '$/types';
 import { RoadieAgentForwarder } from '@/RoadieAgentForwarder';
+import { getLogger } from '@/logger';
+import { BaseLogger } from 'pino';
 
 export class RoadieAgentReceiver {
   private server: Express;
   private agentConfigurations: Map<string, AvailableAgentConfiguration>;
   private handlerConfig: HandlerConfig;
   private forwarder: RoadieAgentForwarder;
+  private logger: BaseLogger;
 
   constructor(
     agentConfigurations: AvailableAgentConfiguration[],
@@ -20,6 +23,7 @@ export class RoadieAgentReceiver {
     this.server = this.constructRequestListener(agentConfigurations);
     this.handlerConfig = handlerConfig;
     this.forwarder = forwarder;
+    this.logger = getLogger('RoadieAgentForwarder');
     this.agentConfigurations = agentConfigurations.reduce(
       (acc, agentConfiguration) => {
         acc.set(agentConfiguration.name, agentConfiguration);
@@ -29,7 +33,7 @@ export class RoadieAgentReceiver {
     );
   }
   start() {
-    console.log('Starting Roadie Agent Receiver webserver');
+    this.logger.info('Starting Roadie Agent Receiver webserver');
     this.server.listen(this.handlerConfig.port);
   }
 
@@ -60,9 +64,13 @@ export class RoadieAgentReceiver {
   ) {
     // Specifying routes explicitly
     app.get(`/agent-provider/${configuration.name}`, (req, res) => {
-      configuration.handler(
-        this.forwarder.createEntityEmitter(configuration.name),
+      const entityEmitter = this.forwarder.createEntityEmitter(
+        configuration.name,
       );
+      this.logger.info(
+        `Received entity emitting trigger for endpoint ${configuration.name}`,
+      );
+      configuration.handler(entityEmitter);
       res.send(
         `Triggered provider event for Roadie Agent ${configuration.name}`,
       );
