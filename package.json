@@ -1,9 +1,9 @@
 {
-  "name": "roadie-agent",
-  "description": "",
-  "repository": "",
-  "homepage": "",
-  "author": "",
+  "name": "@roadiehq/roadie-agent",
+  "description": "Roadie Agent library to build secure custom functionality targeting Roadie instances.",
+  "repository": "https://github.com/RoadieHQ/roadie-agent",
+  "homepage": "https://roadie.io",
+  "author": "Roadie.io",
   "keywords": [],
   "private": true,
   "version": "0.0.1",
@@ -26,14 +26,13 @@
     "format": "prettier src/**/*.ts -w",
     "build-live": "tsc -w && tsc-alias -w"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "express": "^4.17.1",
     "node-fetch": "^2.6.7",
     "snyk-broker": "^4.137.9",
     "@backstage/plugin-catalog-backend": "^1.5.1",
     "@backstage/plugin-catalog-node": "^1.2.1"
-
   },
   "devDependencies": {
     "@types/chai": "^4.2.18",
@@ -48,7 +47,7 @@
     "eslint": "^7.27.0",
     "eslint-plugin-prettier": "^3.4.0",
     "fs-extra": "^10.0.0",
-    "mocha": "^8.4.0",
+    "mocha": "^10.1.0",
     "prettier": "^2.3.0",
     "rimraf": "^3.0.2",
     "source-map-support": "^0.5.19",
