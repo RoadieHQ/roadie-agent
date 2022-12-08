@@ -69,13 +69,35 @@ And then running the file with `node myfile.js`
 
 In reality the Agent initialization call needs some configuration items to work correctly.
 
-| Config name | Default               | Description                                                                                     |
-|-------------|-----------------------|-------------------------------------------------------------------------------------------------|
-| server      | http://localhost:7341 | Broker server URL. This will usually be something like `https://<tenant-name>.broker.roadie.so` |
-| port        | 7342                  | Port to use for the local broker client receiver web server                                     |
-| agentPort   | 7044                  | Port to use for the local Roadie Agent that handles events brokered via the broker client       |
-| accept      | config/accept.json    | Path to the broker client accept file to use                                                    |
+| Config name | Default               | Description                                                                                                     |
+|-------------|-----------------------|-----------------------------------------------------------------------------------------------------------------|
+| server      | http://localhost:7341 | Broker server URL. This will usually be something like `https://<tenant-name>.broker.roadie.so`                 |
+| identifier  | example               | Identifier of the broker client-server connection, also known as broker token. This can be arbitrarily chosen.  |
+| port        | 7342                  | Port to use for the local broker client receiver web server                                                     |
+| agentPort   | 7044                  | Port to use for the local Roadie Agent that handles events brokered via the broker client                       |
+| accept      | config/accept.json    | Path to the broker client accept file to use                                                                    |
 
+
+<details>
+
+<summary>See example</summary>
+
+
+```js
+RoadieAgent.fromConfig({
+      server: 'https://myroadie.broker.roadie.so',
+      identifier: 'my-dev-cluster-roadie-agent',
+      accept: '/etc/config/my-modified-accept.json',
+   })
+  .addEntityProvider(
+    createRoadieAgentEntityProvider({
+      name: 'testprovider',
+      handler: myEntityProviderHandler
+    }),
+  )
+  .start();
+```
+</details>
 
 ### Handler types
 
