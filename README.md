@@ -103,7 +103,7 @@ RoadieAgent.fromConfig({
 
 #### Entity Provider
 
-You can create a Roadie Agent drive Entity Provider by using the `createRoadieAgentEntityProvider` helper function. This function expects two arguments, one naming the agent itself and a handler to provide the actual entities. Note that the `name` defined in here **needs to match** the one configured in your Roadie instance 
+You can create a Roadie Agent driven Entity Provider by using the `createRoadieAgentEntityProvider` helper function. This function expects two arguments, one naming the agent itself and a handler to provide the actual entities. Note that the `name` defined in here **needs to match** the one configured in your Roadie instance 
 
 Entity provider handler is a function that receives an `emit` callback. This callback can be called to emit new entity mutations to your Roadie instance. The shape of the payload to be emitted is based on `EntityProviderMutation` type defined in `@backstage/plugin-catalog-node` package. 
 <details>
