@@ -2,7 +2,7 @@
 
 ## What is Roadie Agent
 
-Roadie Agent library is functionality utilizing Snyk Broker to achieve a secure connection between customer infrastructure and Roadie running application. It utilizes a broker connection between a Broker client initialized by the Roadie Agent and a broker server running in Roadie infrastructure.
+Roadie Agent library is functionality utilizing Snyk Broker to achieve a secure connection between customer infrastructure and running Roadie application. It utilizes a broker connection between a Broker client initialized by the Roadie Agent and a broker server running in Roadie infrastructure.
 
 Roadie agent relies heavily on the Snyk Broker client library in its core. The main flow of data is the same as with Snyk broker where the _Broker Client_ initiates a connection to the _Broker Server_ which is running on the Roadie instance. After the connection between the client and server is successful, data can flow securely via that connection to other destinations reachable by their respective endpoints.
 
