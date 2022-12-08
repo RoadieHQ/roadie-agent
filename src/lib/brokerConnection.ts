@@ -16,7 +16,7 @@ export const initializeBrokerConnection = ({
     client: true,
     config: {
       brokerServerUrl: server,
-      brokerToken: `${identifier}-roadie-agent`,
+      brokerToken: identifier,
       accept,
       port,
     },
