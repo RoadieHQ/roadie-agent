@@ -1,0 +1,71 @@
+{
+  "name": "@roadiehq/roadie-agent",
+  "description": "Roadie Agent library to build secure custom functionality targeting Roadie instances.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RoadieHQ/roadie-agent.git"
+  },
+  "homepage": "https://roadie.io",
+  "author": "RoadieHQ",
+  "keywords": [],
+  "version": "0.0.1-alpha",
+  "publishConfig": {
+    "registry": "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "main": "./build/index.js",
+  "files": [
+    "build/lib/**/*",
+    "build/index.*",
+    "build/types/**/*",
+    "config/accept.json"
+  ],
+  "scripts": {
+    "test": "yarn build && mocha --inspect --require source-map-support/register --bail ./build/test/",
+    "build": "rimraf build && tsc && tsc-alias && yarn copy-files",
+    "preversion": "yarn lint && yarn build && yarn test",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && yarn format && git add -A",
+    "postversion": "yarn publish",
+    "lint": "eslint --ext ts,js --fix src",
+    "format": "prettier src/**/*.ts -w",
+    "copy-files": "copyfiles -u 1 config/**/*.json build/config",
+    "build-live": "tsc -w && tsc-alias -w"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@backstage/plugin-catalog-backend": "^1.5.1",
+    "@backstage/plugin-catalog-node": "^1.2.1",
+    "@backstage/catalog-model": "^1.1.3",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.7",
+    "pino": "^8.7.0",
+    "snyk-broker": "^4.137.9"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.18",
+    "@types/fs-extra": "^9.0.11",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "^15.6.0",
+    "@types/node-fetch": "^2.6.2",
+    "@types/sinon": "^10.0.13",
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0",
+    "chai": "^4.3.4",
+    "conventional-changelog-cli": "^2.1.1",
+    "copyfiles": "^2.4.1",
+    "eslint": "^7.27.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "fs-extra": "^10.0.0",
+    "mocha": "^10.1.0",
+    "msw": "^0.35.0",
+    "prettier": "^2.3.0",
+    "rimraf": "^3.0.2",
+    "sinon": "^15.0.0",
+    "source-map-support": "^0.5.19",
+    "tsc-alias": "^1.2.11",
+    "ts-mock-imports": "^1.3.8",
+    "typescript": "next"
+  }
+}
