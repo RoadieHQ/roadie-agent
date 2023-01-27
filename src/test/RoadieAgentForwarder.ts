@@ -1,8 +1,8 @@
-import { RoadieAgentForwarder } from '@/RoadieAgentForwarder';
 import { EntityProviderMutation } from '@backstage/plugin-catalog-node';
 import { Entity } from '@backstage/catalog-model';
 import * as nodeFetchModule from 'node-fetch';
 import sinon from 'sinon';
+import { RoadieAgentForwarder } from '@/forwarder/RoadieAgentForwarder';
 
 const entity: Entity = {
   metadata: {
@@ -42,7 +42,9 @@ describe('RoadieAgentForwarder', () => {
     const forwarder = new RoadieAgentForwarder({
       brokerClientUrl: 'http://local.host',
     });
-    const emitter = forwarder.createEntityEmitter(connectionToken);
+    const emitter = await forwarder.createEntityEmitter({
+      target: connectionToken,
+    });
     await emitter(fakePayload);
     sinon.assert.calledOnce(fetchStub);
     sinon.assert.calledWith(

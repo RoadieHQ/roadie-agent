@@ -1,4 +1,5 @@
 import { EntityProviderMutation } from '@backstage/plugin-catalog-node';
+import {FactSchema, TechInsightFact} from "@backstage/plugin-tech-insights-node";
 
 export type AvailableAgents =
   | 'entity-provider'
@@ -15,8 +16,14 @@ export interface EntityProviderAgentConfiguration
   extends AgentConfiguration<'entity-provider'> {
   handler: (emit: (mutation: EntityProviderMutation) => Promise<void>) => void;
 }
-export type TechInsightsDataSourceAgentConfiguration =
-  AgentConfiguration<'tech-insights-data-source'>;
+export interface TechInsightsDataSourceAgentConfiguration extends
+  AgentConfiguration<'tech-insights-data-source'> {
+
+  schema: FactSchema;
+  handler: (emit: (techInsightFacts: TechInsightFact[]) => Promise<void>) => void;
+}
+
+
 export type ScaffolderActionAgentConfiguration =
   AgentConfiguration<'scaffolder-action'>;
 

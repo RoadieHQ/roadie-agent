@@ -51,12 +51,20 @@ Standard use case is to use the agent as a library. The minimal example to get s
 // myfile.js
 const { RoadieAgent, createRoadieAgentEntityProvider } = require('@roadiehq/roadie-agent')
 const myEntityProviderHandler = require('./myEntityProvider')
+const { myDataSourceHandler, myDataSourceSchema } = require('./myDataSource')
 
 RoadieAgent.fromConfig()
   .addEntityProvider(
     createRoadieAgentEntityProvider({
       name: 'testprovider',
       handler: myEntityProviderHandler
+    }),
+  )
+  .addTechInsightsDataSource(
+    createRoadieAgentTechInsightsDataSource({
+      name: 'my-data-source',
+      handler: myDataSourceHandler,
+      schema: myDataSourceSchema
     }),
   )
   .start();
@@ -93,6 +101,13 @@ RoadieAgent.fromConfig({
     createRoadieAgentEntityProvider({
       name: 'testprovider',
       handler: myEntityProviderHandler
+    }),
+  )
+  .addTechInsightsDataSource(
+    createRoadieAgentTechInsightsDataSource({
+      name: 'my-data-source',
+      handler: myDataSourceHandler,
+      schema: myDataSourceSchema
     }),
   )
   .start();
@@ -163,6 +178,145 @@ const fakePayload = {
     },
   ],
 };
+
+export const myEntityHandler = async (emit) => {
+  await emit(fakePayload);
+}
+```
+</details>
+
+
+
+#### Tech Insights Data Source
+
+You can create a custom Roadie Agent driven Tech Insights Data Source by using the `createRoadieAgentTechInsightsDataSource` helper function. This function expects three arguments, one naming the agent itself, a schema to indicate the shape of the facts provided by this data source and a handler to provide the actual facts for entities. Note that the `name` defined in here **needs to match** the corresponding Data Source configuration  created in your Roadie instance.
+
+Roadie Agent drive Data Source handler is a function that receives an `emit` callback. This callback can be called to emit collections of entity-facts pairs to your Roadie instance. The shape of the payload to be emitted is an array of `TechInsightFact` type defined in `@backstage/plugin-tech-insights-node` package.
+
+<details>
+<summary>Show type</summary>
+
+```typescript
+declare type TechInsightFact = {
+  /**
+   * Entity reference that this fact relates to
+   */
+  entity: {
+    namespace: string;
+    kind: string;
+    name: string;
+  };
+  /**
+   * A collection of fact values as key value pairs.
+   *
+   * Key indicates fact name as it is defined in FactSchema
+   */
+  facts: Record<string, number | string | boolean | DateTime | number[] | string[] | boolean[] | DateTime[] | JsonValue>;
+  /**
+   * Optional timestamp value which can be used to override retrieval time of the fact row.
+   * Otherwise when stored into data storage, defaults to current time
+   */
+  timestamp?: DateTime;
+};
+```
+</details>
+
+
+The `schema` object provided to register your data source needs to match the data provided via the `emit` function. All extraneous items will be ignored and all missing items will be defaulted to either null or in some cases a default value. If you make changes to the schema of your data source, it may cause data mismatch between older, already provided facts, or existing checks that attempt to use fact values from a previous version of the defined schema. 
+
+The shape of the schema to be provided is `FactSchema` type defined in `@backstage/plugin-tech-insights-node` package.
+
+<details>
+<summary>Show type</summary>
+
+```typescript
+declare type FactSchema = {
+  /**
+   * Name of the fact
+   */
+  [name: string]: {
+    /**
+     * Type of the individual fact value
+     *
+     * Numbers are split into integers and floating point values.
+     * `set` indicates a collection of values, `object` indicates JSON serializable value
+     */
+    type: 'integer' | 'float' | 'string' | 'boolean' | 'datetime' | 'set' | 'object';
+    /**
+     * A description of this individual fact value
+     */
+    description: string;
+    /**
+     * Optional semver string to indicate when this specific fact definition was added to the schema
+     */
+    since?: string;
+    /**
+     * Metadata related to an individual fact.
+     * Can contain links, additional description texts and other actionable data.
+     *
+     * Currently loosely typed, but in the future when patterns emerge, key shapes can be defined
+     *
+     * examples:
+     * ```
+     * \{
+     *   link: 'https://sonarqube.mycompany.com/fix-these-issues',
+     *   suggestion: 'To affect this value, you can do x, y, z',
+     *   minValue: 0
+     * \}
+     * ```
+     */
+    metadata?: Record<string, any>;
+  };
+};
+```
+</details>
+
+
+Example Roadie Agent driven data source with a hardcoded entity and fact data would look like the following:
+
+<details>
+<summary>Show example hardcoded entity handler</summary>
+
+
+```typescript
+const fakePayload = [{
+  entity: {
+    name: 'my-entity',
+    namespace: 'default',
+    kind: 'component'
+  },
+  facts: {
+    'myDataSource.integerFact': 4,
+    'myDataSource.stringFact': "3.40.1",
+    'myDataSource.datetimeFact': "2023-01-27T14:55:45.289Z",
+  }
+}, {
+  entity: {
+    name: 'my-other-entity',
+    namespace: 'default',
+    kind: 'component'
+  },
+  facts: {
+    'myDataSource.integerFact': 42,
+    'myDataSource.stringFact': "0.9.1",
+    'myDataSource.datetimeFact': "2021-11-14T19:25:32.425Z",
+  }
+}];
+
+export const myDataSourceSchema = {
+  'myDataSource.integerFact': { 
+    type: 'integer', 
+    description: 'The amount of things'
+  },
+  'myDataSource.stringFact': {
+    type: 'string',
+    description: 'A semver value of a thing'
+  },
+  'myDataSource.datetimeFact': {
+    type: 'datetime',
+    description: 'Last updated time of thing'
+  },
+}
 
 const myEntityHandler = async (emit) => {
   await emit(fakePayload);

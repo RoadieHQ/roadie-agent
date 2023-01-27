@@ -6,8 +6,8 @@ import {
   ScaffolderActionAgentConfiguration,
   TechInsightsDataSourceAgentConfiguration,
 } from '$/types';
-import { RoadieAgentReceiver } from '@/RoadieAgentReceiver';
-import { RoadieAgentForwarder } from '@/RoadieAgentForwarder';
+import { RoadieAgentReceiver } from '@/receiver/RoadieAgentReceiver';
+import { RoadieAgentForwarder } from '@/forwarder/RoadieAgentForwarder';
 
 const BROKER_CLIENT_URL = 'http://localhost';
 export class RoadieAgent {
@@ -45,11 +45,11 @@ export class RoadieAgent {
     return this;
   }
 
-  start() {
+  async start() {
     const forwarder = new RoadieAgentForwarder({
       brokerClientUrl: `${BROKER_CLIENT_URL}:${this.config.port}`,
     });
-    const receiver = new RoadieAgentReceiver(
+    const receiver = await RoadieAgentReceiver.fromConfig(
       this.agentConfigurations,
       forwarder,
       {
