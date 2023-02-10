@@ -3,7 +3,6 @@ import { AvailableAgentConfiguration, HandlerConfig } from '$/types';
 import { getLogger } from '@/logger';
 import { BaseLogger } from 'pino';
 import { RoadieAgentForwarder } from '@/forwarder/RoadieAgentForwarder';
-import { constructRequestListeners } from '@/receiver/requestListeners';
 
 export class RoadieAgentReceiver {
   private server: Express;
@@ -12,14 +11,11 @@ export class RoadieAgentReceiver {
   private logger: BaseLogger;
 
   static async fromConfig(
+    server: Express,
     agentConfigurations: AvailableAgentConfiguration[],
     forwarder: RoadieAgentForwarder,
     handlerConfig: HandlerConfig,
   ) {
-    const server = await constructRequestListeners(
-      agentConfigurations,
-      forwarder,
-    );
     return new RoadieAgentReceiver(
       server,
       agentConfigurations,

@@ -63,9 +63,9 @@ Standard use case is to use the agent as a library. The minimal example to get s
 // myfile.js
 const { RoadieAgent, createRoadieAgentEntityProvider } = require("@roadiehq/roadie-agent");
 const myEntityProviderHandler = require("./myEntityProvider");
-const { myDataSourceHandler, myDataSourceSchema } = require("./myDataSource");
+const { myDataSourceHandler } = require("./myDataSource");
 
-RoadieAgent.fromConfig({
+const roadieAgent = RoadieAgent.fromConfig({
   identifier: "my-roadie-agent-token"
 })
   .addEntityProvider(
@@ -281,7 +281,71 @@ createRoadieAgentTechInsightsDataSource({
 })
 
 ```
-
 </details>
 
+
+Roadie Agent driven data source can be triggered by calling the `triggerDataSource` method on the constructed RoadieAgent object. This method expects the name of the registered Roadie Agent datasource to trigger the handler function. See an example of the full flow below:
+
+
+
+<details>
+<summary>Show example Express web server triggering Tech Insights custom Data Source</summary>
+
+```typescript
+const fakePayload = [{
+  entity: {
+    name: "my-entity",
+    namespace: "default",
+    kind: "component"
+  },
+  facts: {
+    "myDataSource.integerFact": 4,
+    "myDataSource.stringFact": "3.40.1",
+    "myDataSource.datetimeFact": "2023-01-27T14:55:45.289Z"
+  }
+}, {
+  entity: {
+    name: "my-other-entity",
+    namespace: "default",
+    kind: "component"
+  },
+  facts: {
+    "myDataSource.integerFact": 42,
+    "myDataSource.stringFact": "0.9.1",
+    "myDataSource.datetimeFact": "2021-11-14T19:25:32.425Z"
+  }
+}];
+
+const myDataSourceHandler = async (emit) => {
+  await emit(fakePayload);
+};
+
+
+const { RoadieAgent, createRoadieAgentEntityProvider } = require("@roadiehq/roadie-agent");
+const myEntityProviderHandler = require("./myEntityProvider");
+
+const roadieAgent = await RoadieAgent.fromConfig({
+  identifier: "my-roadie-agent-token"
+})
+  .addTechInsightsDataSource(
+    createRoadieAgentTechInsightsDataSource({
+      name: "my-data-source",
+      handler: myDataSourceHandler
+    })
+  )
+  .start();
+
+
+const app = express();
+
+app.get("/", async (req, res) => {
+  const response = await roadieAgent.trigger("jussi-test-local");
+  res.send(response);
+});
+
+app.listen(3000);
+
+
+```
+</details>
 

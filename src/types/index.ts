@@ -64,3 +64,9 @@ export type HandlerConfig = {
    */
   port: number;
 };
+
+export type TriggerableAgent = {
+  type: AvailableAgents;
+  name: string;
+  trigger: () => any;
+};
