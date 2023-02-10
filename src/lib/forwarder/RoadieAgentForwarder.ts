@@ -2,18 +2,13 @@ import fetch from 'node-fetch';
 import { EntityProviderMutation } from '@backstage/plugin-catalog-node';
 import { getLogger } from '@/logger';
 import { BaseLogger } from 'pino';
-import {
-  FactSchema,
-  TechInsightFact,
-} from '@backstage/plugin-tech-insights-node';
+import { TechInsightFact } from '@backstage/plugin-tech-insights-node';
 
 const ENTITY_PROVIDER_PATH = `api/catalog/roadie-agent/`;
-const TECH_INSIGHTS_FACT_EMITTER_PATH = `api/tech-insights/roadie-agent/register-schema`;
-const TECH_INSIGHTS_SCHEMA_REGISTRATION_PATH = `api/tech-insights/roadie-agent/emit-facts`;
+const TECH_INSIGHTS_FACT_EMITTER_PATH = `api/tech-insights/roadie-agent/emit-facts`;
 
 type EmitterOptions = {
   target: string;
-  schema: FactSchema;
 };
 
 export class RoadieAgentForwarder {
@@ -47,32 +42,10 @@ export class RoadieAgentForwarder {
     };
   }
 
-  async createTechInsightsFactEmitter({ target, schema }: EmitterOptions) {
-    this.logger.info(
-      `Registering schema ${schema} for tech insights data source ${target}`,
-    );
-    const url = `${this.brokerClientUrl}/${TECH_INSIGHTS_SCHEMA_REGISTRATION_PATH}`;
-    const body = JSON.stringify({
-      target,
-      payload: schema,
-    });
-    const schemaCreationResponse = await fetch(url, {
-      method: 'POST',
-      body,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    this.logger.info(
-      'Received response for schema registration',
-      schemaCreationResponse.body,
-    );
-
+  async createTechInsightsFactEmitter({ target }: EmitterOptions) {
     this.logger.info(
       `Creating new tech insights fact emitter for target ${target}`,
     );
-
     return async (techInsightFacts: TechInsightFact[]) => {
       this.logger.info(`Forwarding tech insights data to target ${target}`);
       const url = `${this.brokerClientUrl}/${TECH_INSIGHTS_FACT_EMITTER_PATH}`;

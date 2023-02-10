@@ -69,7 +69,6 @@ async function registerTechInsightsDataSource(
     const techInsightsFactEmitter =
       await forwarder.createTechInsightsFactEmitter({
         target: configuration.name,
-        schema: configuration.schema,
       });
     logger.info(
       `Received entity emitting trigger for endpoint ${configuration.name}`,

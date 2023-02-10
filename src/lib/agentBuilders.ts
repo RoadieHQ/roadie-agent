@@ -24,12 +24,10 @@ export type RoadieAgentTechInsightsConfiguration = Omit<
 >;
 export const createRoadieAgentTechInsightsDataSource = ({
   name,
-  schema,
   handler,
 }: RoadieAgentTechInsightsConfiguration): TechInsightsDataSourceAgentConfiguration => {
   return {
     name,
-    schema,
     handler,
     type: 'tech-insights-data-source',
   };
