@@ -3,7 +3,7 @@ import { AvailableAgentConfiguration, HandlerConfig } from '$/types';
 import { getLogger } from '@/logger';
 import { BaseLogger } from 'pino';
 import { RoadieAgentForwarder } from '@/forwarder/RoadieAgentForwarder';
-import { constructRequestListeners } from '@/receiver/construct';
+import { constructRequestListeners } from '@/receiver/requestListeners';
 
 export class RoadieAgentReceiver {
   private server: Express;
