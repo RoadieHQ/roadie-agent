@@ -71,9 +71,11 @@ async function registerTechInsightsDataSource(
         target: configuration.name,
       });
     logger.info(
-      `Received entity emitting trigger for endpoint ${configuration.name}`,
+      `Received data source emitting trigger for endpoint ${configuration.name}`,
     );
     configuration.handler(techInsightsFactEmitter);
-    res.send(`Triggered provider event for Roadie Agent ${configuration.name}`);
+    res.send(
+      `Triggered data source event for Roadie Agent ${configuration.name}`,
+    );
   });
 }
