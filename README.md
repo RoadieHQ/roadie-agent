@@ -275,7 +275,7 @@ declare type FactSchema = {
 Example Roadie Agent driven data source with a hardcoded entity and fact data would look like the following:
 
 <details>
-<summary>Show example hardcoded entity handler</summary>
+<summary>Show example hardcoded tech insights data source handler</summary>
 
 
 ```typescript
@@ -318,9 +318,16 @@ export const myDataSourceSchema = {
   },
 }
 
-const myEntityHandler = async (emit) => {
+const myDataSourceHandler = async (emit) => {
   await emit(fakePayload);
 }
+
+createRoadieAgentTechInsightsDataSource({
+  name: 'my-data-source',
+  handler: myDataSourceHandler,
+  schema: myDataSourceSchema
+})
+
 ```
 </details>
 
