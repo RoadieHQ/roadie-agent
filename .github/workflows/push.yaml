@@ -27,6 +27,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          file: dockerfiles/kubernetes/Dockerfile
+          file: dockerfiles/Dockerfile
           context: dockerfiles/kubernetes
           tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-kubernetes,roadiehq/broker:kubernetes

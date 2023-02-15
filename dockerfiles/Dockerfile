@@ -20,7 +20,6 @@ RUN apt-get install -y curl
 WORKDIR /home/node
 USER node
 
-# Generate K8s accept filter
 COPY ./accept.json /home/node/
 COPY ./start /home/node/start
 
