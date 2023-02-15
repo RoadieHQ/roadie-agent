@@ -1,0 +1,23 @@
+name: Pull Request Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-containers:
+    runs-on:
+      labels: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+      - name: Build Kubernetes
+        uses: docker/build-push-action@v4
+        with:
+          push: false
+          file: dockerfiles/kubernetes/Dockerfile
+          context: dockerfiles/kubernetes
+          tags: roadiehq/broker:pr-${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-kubernetes
