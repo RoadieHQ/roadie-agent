@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+export K8S_SERVICE_ACCOUNT_TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+broker --verbose
