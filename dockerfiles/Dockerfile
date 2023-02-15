@@ -23,5 +23,4 @@ USER node
 COPY ./accept.json /home/node/
 COPY ./start /home/node/start
 
-EXPOSE $PORT
 ENTRYPOINT ["/home/node/start"]
