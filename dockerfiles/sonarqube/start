@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [ -z "SONARQUBE_INSTANCE_URL"]; then
+  echo "You must provide SONARQUBE_INSTANCE_URL"
+  exit 1
+fi
+
+if [ -z "SONARQUBE_TOKEN"]; then
+  echo "You must provide SONARQUBE_TOKEN"
+  exit 1
+fi
+
+exec broker --verbose

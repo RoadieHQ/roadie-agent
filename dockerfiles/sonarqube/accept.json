@@ -1,0 +1,32 @@
+{
+  "public": [],
+  "private": [
+    {
+      "method": "GET",
+      "path": "/api/components/show",
+      "origin": "${SONARQUBE_INSTANCE_URL}",
+      "auth": {
+        "scheme": "basic",
+        "token": "${SONARQUBE_TOKEN}:"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/metrics/search",
+      "origin": "${SONARQUBE_INSTANCE_URL}",
+      "auth": {
+        "scheme": "basic",
+        "token": "${SONARQUBE_TOKEN}:"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/measures/component",
+      "origin": "${SONARQUBE_INSTANCE_URL}",
+      "auth": {
+        "scheme": "basic",
+        "token": "${SONARQUBE_TOKEN}:"
+      }
+    }
+  ]
+}
