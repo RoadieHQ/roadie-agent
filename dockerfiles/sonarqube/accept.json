@@ -3,7 +3,7 @@
   "private": [
     {
       "method": "GET",
-      "path": "/api/components/show",
+      "path": "/api/components/show*",
       "origin": "${SONARQUBE_INSTANCE_URL}",
       "auth": {
         "scheme": "basic",
@@ -12,7 +12,7 @@
     },
     {
       "method": "GET",
-      "path": "/api/metrics/search",
+      "path": "/api/metrics/search*",
       "origin": "${SONARQUBE_INSTANCE_URL}",
       "auth": {
         "scheme": "basic",
@@ -21,7 +21,7 @@
     },
     {
       "method": "GET",
-      "path": "/api/measures/component",
+      "path": "/api/measures/component*",
       "origin": "${SONARQUBE_INSTANCE_URL}",
       "auth": {
         "scheme": "basic",
