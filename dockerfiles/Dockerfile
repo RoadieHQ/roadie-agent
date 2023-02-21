@@ -20,6 +20,7 @@ RUN apt-get install -y curl
 WORKDIR /home/node
 USER node
 
+ENV ACCEPT=/home/node/accept.json
 COPY ./accept.json /home/node/
 COPY ./start /home/node/start
 
