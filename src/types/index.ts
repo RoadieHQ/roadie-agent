@@ -1,4 +1,5 @@
 import { EntityProviderMutation } from '@backstage/plugin-catalog-node';
+import { TechInsightFact } from '@backstage/plugin-tech-insights-node';
 
 export type AvailableAgents =
   | 'entity-provider'
@@ -15,8 +16,13 @@ export interface EntityProviderAgentConfiguration
   extends AgentConfiguration<'entity-provider'> {
   handler: (emit: (mutation: EntityProviderMutation) => Promise<void>) => void;
 }
-export type TechInsightsDataSourceAgentConfiguration =
-  AgentConfiguration<'tech-insights-data-source'>;
+export interface TechInsightsDataSourceAgentConfiguration
+  extends AgentConfiguration<'tech-insights-data-source'> {
+  handler: (
+    emit: (techInsightFacts: TechInsightFact[]) => Promise<void>,
+  ) => void;
+}
+
 export type ScaffolderActionAgentConfiguration =
   AgentConfiguration<'scaffolder-action'>;
 
@@ -57,4 +63,10 @@ export type HandlerConfig = {
    * Port to use for the local Roadie Agent that handles events. Defaults to 7044
    */
   port: number;
+};
+
+export type TriggerableAgent = {
+  type: AvailableAgents;
+  name: string;
+  trigger: () => any;
 };

@@ -37,6 +37,41 @@
   dependencies:
     regenerator-runtime "^0.13.11"
 
+"@backstage/backend-app-api@^0.3.1":
+  version "0.3.1"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/backend-app-api/-/backend-app-api-0.3.1.tgz#4e08ed0de7058d466c2cb87037bf704e70300fd7"
+  integrity sha512-hBXN3KV0cxho7fWui3MbfbuMA+qqfahBtWGbXdvSOgOkj12WG442HDkYSIYnUDN4ZtFRTNF3JtsTajFRGWUmMQ==
+  dependencies:
+    "@backstage/backend-common" "^0.18.1"
+    "@backstage/backend-plugin-api" "^0.3.1"
+    "@backstage/backend-tasks" "^0.4.2"
+    "@backstage/cli-common" "^0.1.11"
+    "@backstage/config" "^1.0.6"
+    "@backstage/config-loader" "^1.1.8"
+    "@backstage/errors" "^1.1.4"
+    "@backstage/plugin-auth-node" "^0.2.10"
+    "@backstage/plugin-permission-node" "^0.7.4"
+    "@backstage/types" "^1.0.2"
+    "@manypkg/get-packages" "^1.1.3"
+    "@types/cors" "^2.8.6"
+    "@types/express" "^4.17.6"
+    compression "^1.7.4"
+    cors "^2.8.5"
+    express "^4.17.1"
+    express-promise-router "^4.1.0"
+    fs-extra "10.1.0"
+    helmet "^6.0.0"
+    lodash "^4.17.21"
+    logform "^2.3.2"
+    minimatch "^5.0.0"
+    minimist "^1.2.5"
+    morgan "^1.10.0"
+    node-forge "^1.3.1"
+    selfsigned "^2.0.0"
+    stoppable "^1.1.0"
+    winston "^3.2.1"
+    winston-transport "^4.5.0"
+
 "@backstage/backend-common@^0.16.0":
   version "0.16.0"
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/backend-common/-/backend-common-0.16.0.tgz#cc26f26741a7ff208df28074d8e9395da2e87e09"
@@ -94,6 +129,65 @@
     yauzl "^2.10.0"
     yn "^4.0.0"
 
+"@backstage/backend-common@^0.18.1":
+  version "0.18.1"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/backend-common/-/backend-common-0.18.1.tgz#a0886246fecd126fb1082c464cc4f2618b8b3a34"
+  integrity sha512-hOsg5LQEZuL7x5MwJ3zUHZnHpkB1BOY3MXsZ+HcZl0Zaor3684WKpscMQO08kQNag6lXxKCKTpr79sBKqlEpaQ==
+  dependencies:
+    "@backstage/backend-app-api" "^0.3.1"
+    "@backstage/backend-plugin-api" "^0.3.1"
+    "@backstage/cli-common" "^0.1.11"
+    "@backstage/config" "^1.0.6"
+    "@backstage/config-loader" "^1.1.8"
+    "@backstage/errors" "^1.1.4"
+    "@backstage/integration" "^1.4.2"
+    "@backstage/types" "^1.0.2"
+    "@google-cloud/storage" "^6.0.0"
+    "@keyv/memcache" "^1.3.5"
+    "@keyv/redis" "^2.5.3"
+    "@kubernetes/client-node" "0.18.0"
+    "@manypkg/get-packages" "^1.1.3"
+    "@octokit/rest" "^19.0.3"
+    "@types/cors" "^2.8.6"
+    "@types/dockerode" "^3.3.0"
+    "@types/express" "^4.17.6"
+    "@types/luxon" "^3.0.0"
+    "@types/webpack-env" "^1.15.2"
+    archiver "^5.0.2"
+    aws-sdk "^2.840.0"
+    base64-stream "^1.0.0"
+    compression "^1.7.4"
+    concat-stream "^2.0.0"
+    cors "^2.8.5"
+    dockerode "^3.3.1"
+    express "^4.17.1"
+    express-promise-router "^4.1.0"
+    fs-extra "10.1.0"
+    git-url-parse "^13.0.0"
+    helmet "^6.0.0"
+    isomorphic-git "^1.8.0"
+    jose "^4.6.0"
+    keyv "^4.5.2"
+    knex "^2.0.0"
+    lodash "^4.17.21"
+    logform "^2.3.2"
+    luxon "^3.0.0"
+    minimatch "^5.0.0"
+    minimist "^1.2.5"
+    morgan "^1.10.0"
+    node-fetch "^2.6.7"
+    node-forge "^1.3.1"
+    raw-body "^2.4.1"
+    request "^2.88.2"
+    selfsigned "^2.0.0"
+    stoppable "^1.1.0"
+    tar "^6.1.12"
+    uuid "^8.3.2"
+    winston "^3.2.1"
+    winston-transport "^4.5.0"
+    yauzl "^2.10.0"
+    yn "^4.0.0"
+
 "@backstage/backend-plugin-api@^0.1.4":
   version "0.1.4"
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/backend-plugin-api/-/backend-plugin-api-0.1.4.tgz#9249174bf75b0c1192e4391fd1593744f724bbe0"
@@ -107,6 +201,20 @@
     express "^4.17.1"
     winston "^3.2.1"
     winston-transport "^4.5.0"
+
+"@backstage/backend-plugin-api@^0.3.1":
+  version "0.3.1"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/backend-plugin-api/-/backend-plugin-api-0.3.1.tgz#76134d32672fb993053872a01920edc73ce4f4f4"
+  integrity sha512-0BJBAXVPARH/PxcYCY7bhkiur5QK+p1cwGYQfohS9KDp/cfnEdcgRs0TwxR5lzLJo6qYN2s2b5O4UYUi44wtfg==
+  dependencies:
+    "@backstage/backend-tasks" "^0.4.2"
+    "@backstage/config" "^1.0.6"
+    "@backstage/plugin-auth-node" "^0.2.10"
+    "@backstage/plugin-permission-common" "^0.7.3"
+    "@backstage/types" "^1.0.2"
+    "@types/express" "^4.17.6"
+    express "^4.17.1"
+    knex "^2.0.0"
 
 "@backstage/backend-tasks@^0.3.7":
   version "0.3.7"
@@ -126,6 +234,24 @@
     uuid "^8.0.0"
     winston "^3.2.1"
     zod "^3.9.5"
+
+"@backstage/backend-tasks@^0.4.2":
+  version "0.4.2"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/backend-tasks/-/backend-tasks-0.4.2.tgz#0e0f33f2480c0978db92c0f1c667d1862d529f98"
+  integrity sha512-YXpZl8kEcoMyUOWWufOqrKEKBJFGfuKsJH4wlGRFv7n9pbgaNNhKAIJ3RNFC5gN7329HwgOMwpTFoN2gnrCtEw==
+  dependencies:
+    "@backstage/backend-common" "^0.18.1"
+    "@backstage/config" "^1.0.6"
+    "@backstage/errors" "^1.1.4"
+    "@backstage/types" "^1.0.2"
+    "@types/luxon" "^3.0.0"
+    cron "^2.0.0"
+    knex "^2.0.0"
+    lodash "^4.17.21"
+    luxon "^3.0.0"
+    uuid "^8.0.0"
+    winston "^3.2.1"
+    zod "~3.18.0"
 
 "@backstage/catalog-client@^1.1.2":
   version "1.1.2"
@@ -154,6 +280,11 @@
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/cli-common/-/cli-common-0.1.10.tgz#3b4ea32fe7adfd8efc8d5c760b20cf08c046cd6a"
   integrity sha512-5Nt88V32yciUlgr/XCWu2n9oSRD2XRBtkzGDDq4YTzXMJNty283DVi2c7xgeDPF2DN0d6fiENQAipp3oEulXTg==
 
+"@backstage/cli-common@^0.1.11":
+  version "0.1.11"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/cli-common/-/cli-common-0.1.11.tgz#9d8fd8cbe83e21ad3d207edecb3c3df3024a35a8"
+  integrity sha512-6gjYi2ndXUBVV6YNbiPJMHoPLROlikZ2nnKJrblnYhWZaKhKncXVxtjfCGPItTFPnIbW0oZu2Ue0Z/1VCyfOaQ==
+
 "@backstage/config-loader@^1.1.6":
   version "1.1.6"
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/config-loader/-/config-loader-1.1.6.tgz#ae1ff3b81031fc36aa6ec8c4cd142f9f1089017b"
@@ -175,6 +306,27 @@
     yaml "^2.0.0"
     yup "^0.32.9"
 
+"@backstage/config-loader@^1.1.8":
+  version "1.1.8"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/config-loader/-/config-loader-1.1.8.tgz#3c169ce41549f1788a8a340279a4cf77367d1cac"
+  integrity sha512-S6B6OWaojJf9vWi/wVV5Pr8zXc1meSWTgjaXX64pDzdDGDlzL+wARloObJvDvqCJyLolkQuW2TNZYZKLRc6Iqg==
+  dependencies:
+    "@backstage/cli-common" "^0.1.11"
+    "@backstage/config" "^1.0.6"
+    "@backstage/errors" "^1.1.4"
+    "@backstage/types" "^1.0.2"
+    "@types/json-schema" "^7.0.6"
+    ajv "^8.10.0"
+    chokidar "^3.5.2"
+    fs-extra "10.1.0"
+    json-schema "^0.4.0"
+    json-schema-merge-allof "^0.8.1"
+    json-schema-traverse "^1.0.0"
+    node-fetch "^2.6.7"
+    typescript-json-schema "^0.55.0"
+    yaml "^2.0.0"
+    yup "^0.32.9"
+
 "@backstage/config@^1.0.4":
   version "1.0.4"
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/config/-/config-1.0.4.tgz#70197c4e31cfb9a8242b14a8b0a8551e59361381"
@@ -183,12 +335,29 @@
     "@backstage/types" "^1.0.1"
     lodash "^4.17.21"
 
+"@backstage/config@^1.0.6":
+  version "1.0.6"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/config/-/config-1.0.6.tgz#551ffe6793aec29f7d7f9e5ba1bb010ba6ed0b00"
+  integrity sha512-ZN3ABydLRZNTtL9FXPpvw678CJ/G2UtGHrX/Cq6Tfd9QJ6/wjMTagTe/KibxGh6lxIG+VGU+BOAqt6mHgMDopA==
+  dependencies:
+    "@backstage/types" "^1.0.2"
+    lodash "^4.17.21"
+
 "@backstage/errors@^1.1.3":
   version "1.1.3"
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/errors/-/errors-1.1.3.tgz#0c61b654a51b90d5224d70c16680215679ec11a0"
   integrity sha512-KgNUELpGZ0BHqHr9Sku7iPTMc/huBurPdRMGUWC6TD6lwzHJtN1WWLJL0lzJyDprXCKQLUogIJxt8auS2bdgNw==
   dependencies:
     "@backstage/types" "^1.0.1"
+    cross-fetch "^3.1.5"
+    serialize-error "^8.0.1"
+
+"@backstage/errors@^1.1.4":
+  version "1.1.4"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/errors/-/errors-1.1.4.tgz#42bfc620f435a848abc4abccfd38b79e950642c7"
+  integrity sha512-u0q0/UlG+WM4h67Owfpvc/yN8T1ivFOLDzzmogaFSwC5+R6sZRqYasmjeURtkJvw7aG9RpXYWY7CofCSg1E20Q==
+  dependencies:
+    "@backstage/types" "^1.0.2"
     cross-fetch "^3.1.5"
     serialize-error "^8.0.1"
 
@@ -205,6 +374,34 @@
     git-url-parse "^13.0.0"
     lodash "^4.17.21"
     luxon "^3.0.0"
+
+"@backstage/integration@^1.4.2":
+  version "1.4.2"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/integration/-/integration-1.4.2.tgz#5a0d6e6215d46b05055804c06a2e54bad501fb6e"
+  integrity sha512-vWclxqDvOYDPPBXOiaN5HTcGlWR/Mdk8etZu4u24DLlvqmKRVOG3UFajf1VoNcEZqtkN08QsfbhoiQHE4mmHxg==
+  dependencies:
+    "@backstage/config" "^1.0.6"
+    "@backstage/errors" "^1.1.4"
+    "@octokit/auth-app" "^4.0.0"
+    "@octokit/rest" "^19.0.3"
+    cross-fetch "^3.1.5"
+    git-url-parse "^13.0.0"
+    lodash "^4.17.21"
+    luxon "^3.0.0"
+
+"@backstage/plugin-auth-node@^0.2.10":
+  version "0.2.10"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/plugin-auth-node/-/plugin-auth-node-0.2.10.tgz#fbda59f7669699361afa68da94798fe7842e044b"
+  integrity sha512-a6kP+xxwUEwrVz05sxd7dJV0uVFXm+4hWrl4qEfS9RZMRUtcS9AT79kxrirMzfiR8+9rbU4pOnNCkr/ZD0oOiw==
+  dependencies:
+    "@backstage/backend-common" "^0.18.1"
+    "@backstage/config" "^1.0.6"
+    "@backstage/errors" "^1.1.4"
+    "@types/express" "*"
+    express "^4.17.1"
+    jose "^4.6.0"
+    node-fetch "^2.6.7"
+    winston "^3.2.1"
 
 "@backstage/plugin-auth-node@^0.2.7":
   version "0.2.7"
@@ -293,6 +490,18 @@
     uuid "^8.0.0"
     zod "^3.11.6"
 
+"@backstage/plugin-permission-common@^0.7.3":
+  version "0.7.3"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/plugin-permission-common/-/plugin-permission-common-0.7.3.tgz#389ec502affa5694895055c5537c96f8ed21db0f"
+  integrity sha512-27I9X/kj3xBe6Hg4wynoEzDYLa5jpC7PNh8cGok6RLdkMM4H2aXo8yEMOArxp+JYPhHzNW07ZhjkBF0PcEpAEQ==
+  dependencies:
+    "@backstage/config" "^1.0.6"
+    "@backstage/errors" "^1.1.4"
+    "@backstage/types" "^1.0.2"
+    cross-fetch "^3.1.5"
+    uuid "^8.0.0"
+    zod "~3.18.0"
+
 "@backstage/plugin-permission-node@^0.7.1":
   version "0.7.1"
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/plugin-permission-node/-/plugin-permission-node-0.7.1.tgz#5a38e5112e1826ee1f7d3ba6ed8f3ae1fd1a9c76"
@@ -308,6 +517,22 @@
     express-promise-router "^4.1.0"
     zod "^3.11.6"
     zod-to-json-schema "^3.18.1"
+
+"@backstage/plugin-permission-node@^0.7.4":
+  version "0.7.4"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/plugin-permission-node/-/plugin-permission-node-0.7.4.tgz#199e61c7aeeb709bd563d76f196201173f1c6f85"
+  integrity sha512-5zXH1s5A46VxQDMw4rCM0sKkbr4mYM3dw0sw5LMM91Nw86+Ac8Jtg7ycObFqCFZXA2vi9qn9V17bRg1mC9oLYw==
+  dependencies:
+    "@backstage/backend-common" "^0.18.1"
+    "@backstage/config" "^1.0.6"
+    "@backstage/errors" "^1.1.4"
+    "@backstage/plugin-auth-node" "^0.2.10"
+    "@backstage/plugin-permission-common" "^0.7.3"
+    "@types/express" "^4.17.6"
+    express "^4.17.1"
+    express-promise-router "^4.1.0"
+    zod "~3.18.0"
+    zod-to-json-schema "~3.18.0"
 
 "@backstage/plugin-scaffolder-common@^1.2.2":
   version "1.2.2"
@@ -325,10 +550,38 @@
     "@backstage/plugin-permission-common" "^0.7.1"
     "@backstage/types" "^1.0.1"
 
+"@backstage/plugin-tech-insights-common@^0.2.9":
+  version "0.2.9"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/plugin-tech-insights-common/-/plugin-tech-insights-common-0.2.9.tgz#99d52d3c2f978578bad614b030eda079b0255413"
+  integrity sha512-gDX2ANGUBzDtDhydrZ/WE7WsTJDtu8+DAuTa4O5owNNmDB2EB/WDdYWy7K83h/glwKOOqoFODKGZyxbbVhxu0g==
+  dependencies:
+    "@backstage/types" "^1.0.2"
+    "@types/luxon" "^3.0.0"
+    luxon "^3.0.0"
+
+"@backstage/plugin-tech-insights-node@^0.3.9":
+  version "0.3.9"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/plugin-tech-insights-node/-/plugin-tech-insights-node-0.3.9.tgz#148023fefdb28265417e5c404d1618dc45f9ac2f"
+  integrity sha512-bXT/nMruNBEzOZZc2bkVH2gE0KkFJDe+DCD6vLmpHt2AThSq5VlFVh5PzTWPqMnFiC6U27+XszSL58IfpsNSMw==
+  dependencies:
+    "@backstage/backend-common" "^0.18.1"
+    "@backstage/backend-tasks" "^0.4.2"
+    "@backstage/config" "^1.0.6"
+    "@backstage/plugin-tech-insights-common" "^0.2.9"
+    "@backstage/types" "^1.0.2"
+    "@types/luxon" "^3.0.0"
+    luxon "^3.0.0"
+    winston "^3.2.1"
+
 "@backstage/types@^1.0.1":
   version "1.0.1"
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/types/-/types-1.0.1.tgz#9a64515ca5683d7f4f1c9a36c7ef84cab1af7c09"
   integrity sha512-iSaeCzTczIWQ/Kq1gk9HP3U62jEnCj6O/AfcJv0ahyeGdTjlL9og6lgeL/FClOauBWwFFcqF+a8eehdCfFmfng==
+
+"@backstage/types@^1.0.2":
+  version "1.0.2"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@backstage/types/-/types-1.0.2.tgz#a12cdc7c1ec7e0d99cb2e30903b9dfd97c1050c9"
+  integrity sha512-wE4AAP3je00UlVNV5faIto414aOUNv30CmvNmxgImNKelPRYJsMEicM9slwkrNMyFLqTMITeXJvQvMofUk3Wxg==
 
 "@balena/dockerignore@^1.0.2":
   version "1.0.2"
@@ -501,6 +754,32 @@
     tslib "^1.9.3"
     underscore "^1.9.1"
     ws "^7.3.1"
+
+"@kubernetes/client-node@0.18.0":
+  version "0.18.0"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/@kubernetes/client-node/-/client-node-0.18.0.tgz#b1002f3c19fb7509ce521ea78f500589f8e3e047"
+  integrity sha512-Mp6q0OkZQBp+HslIgvHYpsPJk8z6mch231QWtIZQHvs+PaTE6mkUfusYE8fNw3jMjru5mVO/JDz6PTjB9YT2rQ==
+  dependencies:
+    "@types/js-yaml" "^4.0.1"
+    "@types/node" "^10.12.0"
+    "@types/request" "^2.47.1"
+    "@types/ws" "^6.0.1"
+    byline "^5.0.0"
+    execa "5.0.0"
+    isomorphic-ws "^4.0.1"
+    js-yaml "^4.1.0"
+    jsonpath-plus "^0.19.0"
+    request "^2.88.0"
+    rfc4648 "^1.3.0"
+    shelljs "^0.8.5"
+    stream-buffers "^3.0.2"
+    tar "^6.1.11"
+    tmp-promise "^3.0.2"
+    tslib "^2.4.1"
+    underscore "^1.13.6"
+    ws "^7.3.1"
+  optionalDependencies:
+    openid-client "^5.3.0"
 
 "@manypkg/find-root@^1.1.0":
   version "1.1.0"
@@ -4684,6 +4963,16 @@ openid-client@^5.1.6:
     object-hash "^2.0.1"
     oidc-token-hash "^5.0.1"
 
+openid-client@^5.3.0:
+  version "5.3.2"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/openid-client/-/openid-client-5.3.2.tgz#fcc2c16f9681fa5f03ee0581b0935f88fc49f11f"
+  integrity sha512-nXXt+cna0XHOw+WqjMZOmuXw/YZEMwfWD2lD7tCsFtsBjMQGVXA+NZABA3upYBET1suhIsmfd7GnxG4jCAnvYQ==
+  dependencies:
+    jose "^4.10.0"
+    lru-cache "^6.0.0"
+    object-hash "^2.0.1"
+    oidc-token-hash "^5.0.1"
+
 optionator@^0.9.1:
   version "0.9.1"
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/optionator/-/optionator-0.9.1.tgz#4f236a6373dae0566a6d43e1326674f50c291499"
@@ -6153,7 +6442,7 @@ ts-mock-imports@^1.3.8:
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/ts-mock-imports/-/ts-mock-imports-1.3.8.tgz#6b26887c651effe947ea91f928338d1899146fb9"
   integrity sha512-A5n0iEg4zh2/qToo54XOa/wT31fAI0B8DHYU4RDcA6HIddZQPRkTsYri3Hl69+OSLjOKWjyP3/vYOIp3SAIZXg==
 
-ts-node@^10.2.1:
+ts-node@^10.2.1, ts-node@^10.9.1:
   version "10.9.1"
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/ts-node/-/ts-node-10.9.1.tgz#e73de9102958af9e1f0b168a6ff320e25adcff4b"
   integrity sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==
@@ -6193,6 +6482,11 @@ tslib@^2.1.0:
   version "2.4.1"
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/tslib/-/tslib-2.4.1.tgz#0d0bfbaac2880b91e22df0768e55be9753a5b17e"
   integrity sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==
+
+tslib@^2.4.1:
+  version "2.5.0"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/tslib/-/tslib-2.5.0.tgz#42bfed86f5787aeb41d031866c8f402429e0fddf"
+  integrity sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==
 
 tsutils@^3.21.0:
   version "3.21.0"
@@ -6287,6 +6581,20 @@ typescript-json-schema@^0.54.0:
     typescript "~4.6.0"
     yargs "^17.1.1"
 
+typescript-json-schema@^0.55.0:
+  version "0.55.0"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/typescript-json-schema/-/typescript-json-schema-0.55.0.tgz#f268d27ac0b76284a929c6f72714c6ca4e1b5e20"
+  integrity sha512-BXaivYecUdiXWWNiUqXgY6A9cMWerwmhtO+lQE7tDZGs7Mf38sORDeQZugfYOZOHPZ9ulsD+w0LWjFDOQoXcwg==
+  dependencies:
+    "@types/json-schema" "^7.0.9"
+    "@types/node" "^16.9.2"
+    glob "^7.1.7"
+    path-equal "^1.1.2"
+    safe-stable-stringify "^2.2.0"
+    ts-node "^10.9.1"
+    typescript "~4.8.2"
+    yargs "^17.1.1"
+
 typescript@next:
   version "5.0.0-dev.20221202"
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/typescript/-/typescript-5.0.0-dev.20221202.tgz#63335cc6e55e86381ef413bd5bdc01535e23c8c4"
@@ -6296,6 +6604,11 @@ typescript@~4.6.0:
   version "4.6.4"
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/typescript/-/typescript-4.6.4.tgz#caa78bbc3a59e6a5c510d35703f6a09877ce45e9"
   integrity sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==
+
+typescript@~4.8.2:
+  version "4.8.4"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/typescript/-/typescript-4.8.4.tgz#c464abca159669597be5f96b8943500b238e60e6"
+  integrity sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==
 
 uglify-js@^3.1.4:
   version "3.17.4"
@@ -6312,7 +6625,7 @@ undefsafe@^2.0.2:
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/undefsafe/-/undefsafe-2.0.5.tgz#38733b9327bdcd226db889fb723a6efd162e6e2c"
   integrity sha512-WxONCrssBM8TSPRqN5EmsjVrsv4A8X12J4ArBiiayv3DyyG3ZlIg6yysuuSYdZsVz3TKcTg2fd//Ujd4CHV1iA==
 
-underscore@^1.9.1:
+underscore@^1.13.6, underscore@^1.9.1:
   version "1.13.6"
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/underscore/-/underscore-1.13.6.tgz#04786a1f589dc6c09f761fc5f45b89e935136441"
   integrity sha512-+A5Sja4HP1M08MaXya7p5LvjuM7K6q/2EaC0+iovj/wOcMsTzMvDFbasi/oSapiwOlt252IqsKqPjCl7huKS0A==
@@ -6726,7 +7039,17 @@ zod-to-json-schema@^3.18.1:
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/zod-to-json-schema/-/zod-to-json-schema-3.19.3.tgz#731226a2e37bd8764ce9cbf7df65bd2bf6ecf638"
   integrity sha512-ACNhkhhspMy0bb2aGPWiYH4Prp7Xkyz/eWuuR/1+Ql8SO6uhSrWWePQP1XVC/rzVvnQ3r4K35x97THh+VFmc+w==
 
+zod-to-json-schema@~3.18.0:
+  version "3.18.2"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/zod-to-json-schema/-/zod-to-json-schema-3.18.2.tgz#ce540062c6b57e5cc170aae57dad5eeb76d64f7b"
+  integrity sha512-Vv1emSad6nJGRJUD/cdVxSgxtT3PnaUiHHZ+PxDU5vx+klM9eDekuIj6lO+tZTbATK+6ktJfY2C+WXn2mMX3Jw==
+
 zod@^3.11.6, zod@^3.9.5:
   version "3.19.1"
   resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/zod/-/zod-3.19.1.tgz#112f074a97b50bfc4772d4ad1576814bd8ac4473"
   integrity sha512-LYjZsEDhCdYET9ikFu6dVPGp2YH9DegXjdJToSzD9rO6fy4qiRYFoyEYwps88OseJlPyl2NOe2iJuhEhL7IpEA==
+
+zod@~3.18.0:
+  version "3.18.0"
+  resolved "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/zod/-/zod-3.18.0.tgz#2eed58b3cafb8d9a67aa2fee69279702f584f3bc"
+  integrity sha512-gwTm8RfUCe8l9rDwN5r2A17DkAa8Ez4Yl4yXqc5VqeGaXaJahzYYXbTwvhroZi0SNBqTwh/bKm2N0mpCzuw4bA==

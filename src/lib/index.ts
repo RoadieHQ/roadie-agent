@@ -1,2 +1,5 @@
 export { RoadieAgent } from './RoadieAgent';
-export { createRoadieAgentEntityProvider } from './entityProviderAgent';
+export {
+  createRoadieAgentEntityProvider,
+  createRoadieAgentTechInsightsDataSource,
+} from './agentBuilders';
