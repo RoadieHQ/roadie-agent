@@ -28,10 +28,16 @@ export class RoadieAgentForwarder {
           'Content-Type': 'application/json',
         },
       });
-      const responseBody = await response.text();
-      this.logger.info(
-        `Received response from forwarder mutation. Status: ${response.status}, ${response.statusText}. Body: ${responseBody}`,
-      );
+      try {
+        const responseBody = await response.text();
+        this.logger.info(
+          `Received response from forwarder mutation. Status: ${response.status}, ${response.statusText}. Body: ${responseBody}`,
+        );
+      } catch (e) {
+        this.logger.warn(
+          `No Response received from forwarder mutation. Status: ${response?.status}, ${response?.statusText}.`,
+        );
+      }
     };
   }
 }
