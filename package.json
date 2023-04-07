@@ -8,7 +8,7 @@
   "homepage": "https://roadie.io",
   "author": "RoadieHQ",
   "keywords": [],
-  "version": "0.0.1-alpha",
+  "version": "0.0.1",
   "engines": {
     "node": ">=16"
   },
