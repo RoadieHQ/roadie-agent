@@ -9,9 +9,6 @@
   "author": "RoadieHQ",
   "keywords": [],
   "version": "0.0.1-alpha",
-  "publishConfig": {
-    "registry": "https://roadiehq.jfrog.io/artifactory/api/npm/roadiehq/"
-  },
   "engines": {
     "node": ">=16"
   },
