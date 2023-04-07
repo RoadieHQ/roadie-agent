@@ -4,6 +4,12 @@
 
 ### Patch Changes
 
+- 01348d5: Move publish to CI
+
+## 0.0.2
+
+### Patch Changes
+
 - efa6d37: A second release
 
 ## 0.0.1
