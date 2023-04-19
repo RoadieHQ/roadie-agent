@@ -5,7 +5,7 @@ if [ -f /var/run/secrets/kubernetes.io/serviceaccount/token ]; then
 fi
 
 if [ -f /var/run/secrets/kubernetes.io/serviceaccount/ca.crt ]; then
-  export CA_FILE=${CA_FILE:-/var/run/secrets/kubernetes.io/serviceaccount/ca.crt}
+  export CA_CERT=${CA_CERT:-/var/run/secrets/kubernetes.io/serviceaccount/ca.crt}
 fi
 
 export K8S_SERVICE_ACCOUNT_TOKEN="${K8S_SERVICE_ACCOUNT_TOKEN:-$DEFAULT_K8S_SERVICE_ACCOUNT_TOKEN}"
