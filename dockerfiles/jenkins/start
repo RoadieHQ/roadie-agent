@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+if [ -z "JENKINS_URL"]; then
+  echo "You must provide JENKINS_URL"
+  exit 1
+fi
+
+if [ -z "JENKINS_USERNAME"]; then
+  echo "You must provide JENKINS_USERNAME"
+  exit 1
+fi
+
+if [ -z "JENKINS_PASSWORD"]; then
+  echo "You must provide JENKINS_PASSWORD"
+  exit 1
+fi
+
+exec broker --verbose
