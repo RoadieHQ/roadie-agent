@@ -37,3 +37,10 @@ jobs:
           file: dockerfiles/Dockerfile
           context: dockerfiles/sonarqube
           tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-sonarqube,roadiehq/broker:sonarqube
+      - name: Build Jenkins
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          file: dockerfiles/Dockerfile
+          context: dockerfiles/jenkins
+          tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-jenkins,roadiehq/broker:jenkins
