@@ -10,4 +10,4 @@ if [ -z "$SONARQUBE_TOKEN"]; then
   exit 1
 fi
 
-exec broker --verbose
+exec broker --verbose --disableBodyVarsSubstitution --disableHeaderVarsSubstitution
