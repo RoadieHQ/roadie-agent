@@ -15,7 +15,7 @@ COPY --from=base /home/node/.npm-global /home/node/.npm-global
 COPY --from=base /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 USER root
-RUN apt-get install -y curl
+RUN apt-get install -y curl --fix-missing
 # Don't run as root
 WORKDIR /home/node
 USER node
