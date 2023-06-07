@@ -8,7 +8,7 @@ RUN apt update && apt install -y make python gcc
 RUN apt-get update && apt-get install -y ca-certificates
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
-RUN npm install --global snyk-broker@4.124.0
+RUN npm install --global snyk-broker@4.156.1
 FROM snyk/ubuntu
 ENV PATH=$PATH:/home/node/.npm-global/bin
 COPY --from=base /home/node/.npm-global /home/node/.npm-global
