@@ -126,6 +126,51 @@
         "scheme": "bearer",
         "token": "${K8S_SERVICE_ACCOUNT_TOKEN}"
       }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/limitranges*",
+      "origin": "${CLUSTER_ENDPOINT}",
+      "auth": {
+        "scheme": "bearer",
+        "token": "${K8S_SERVICE_ACCOUNT_TOKEN}"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/apis/batch/v1/jobs*",
+      "origin": "${CLUSTER_ENDPOINT}",
+      "auth": {
+        "scheme": "bearer",
+        "token": "${K8S_SERVICE_ACCOUNT_TOKEN}"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/apis/batch/v1/cronjobs*",
+      "origin": "${CLUSTER_ENDPOINT}",
+      "auth": {
+        "scheme": "bearer",
+        "token": "${K8S_SERVICE_ACCOUNT_TOKEN}"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/apis/apps/v1/statefulsets*",
+      "origin": "${CLUSTER_ENDPOINT}",
+      "auth": {
+        "scheme": "bearer",
+        "token": "${K8S_SERVICE_ACCOUNT_TOKEN}"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/apis/apps/v1/daemonsets*",
+      "origin": "${CLUSTER_ENDPOINT}",
+      "auth": {
+        "scheme": "bearer",
+        "token": "${K8S_SERVICE_ACCOUNT_TOKEN}"
+      }
     }
   ]
 }
