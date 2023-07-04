@@ -2637,6 +2637,16 @@ asap@~2.0.3:
   resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
   integrity sha512-BSHWgDSAiKs50o2Re8ppvp3seVHXSRM44cdSsT9FfNEUUZLOGWVCsiWaRPWM1Znn+mqZ1OfVZ3z3DWEzSp7hRA==
 
+asn1.js@^5.0.0:
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/asn1.js/-/asn1.js-5.4.1.tgz#11a980b84ebb91781ce35b0fdc2ee294e3783f07"
+  integrity sha512-+I//4cYPccV8LdmBLiX8CYvf9Sp3vQsrqu2QNXRcrbiWvcx/UdlFiqUJJzxRQxgsZmvhXhn4cSKeSmoFjVdupA==
+  dependencies:
+    bn.js "^4.0.0"
+    inherits "^2.0.1"
+    minimalistic-assert "^1.0.0"
+    safer-buffer "^2.1.0"
+
 asn1@^0.2.4, asn1@~0.2.3:
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/asn1/-/asn1-0.2.6.tgz#0d3a7bb6e64e02a90c0303b31f292868ea09a08d"
@@ -2796,6 +2806,11 @@ bl@^4.0.3, bl@^4.1.0:
     buffer "^5.5.0"
     inherits "^2.0.4"
     readable-stream "^3.4.0"
+
+bn.js@^4.0.0:
+  version "4.12.0"
+  resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.12.0.tgz#775b3f278efbb9718eec7361f483fb36fbbfea88"
+  integrity sha512-c98Bf3tPniI+scsdk237ku1Dc3ujXQTSgyiPUDEOe7tRkhrqridvh8klBv0HCEso1OLOYcHuCv/cS6DNxKH+ZA==
 
 body-parser@1.20.1:
   version "1.20.1"
@@ -3778,10 +3793,10 @@ dot-prop@^5.1.0:
   dependencies:
     is-obj "^2.0.0"
 
-dotenv@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
-  integrity sha512-HygQCKUBSFl8wKQZBSemMywRWcEDNidvNbjGVyZu3nbZ8qq9ubiPoGLMdRDpfSrpkkm9BXYFkpKxxFX38o/76w==
+dotenv@^16.0.3:
+  version "16.3.1"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.3.1.tgz#369034de7d7e5b120972693352a3bf112172cc3e"
+  integrity sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==
 
 dtrace-provider@~0.8:
   version "0.8.8"
@@ -5879,6 +5894,11 @@ min-indent@^1.0.0:
   resolved "https://registry.yarnpkg.com/min-indent/-/min-indent-1.0.1.tgz#a63f681673b30571fbe8bc25686ae746eefa9869"
   integrity sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==
 
+minimalistic-assert@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz#2e194de044626d4a10e7f7fbc00ce73e83e4d5c7"
+  integrity sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A==
+
 "minimatch@2 || 3", minimatch@^3.0.3, minimatch@^3.0.4, minimatch@^3.1.1:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.1.2.tgz#19cd194bfd3e428f049a70817c038d89ab4be35b"
@@ -6275,6 +6295,13 @@ openid-client@^5.3.0:
     lru-cache "^6.0.0"
     object-hash "^2.0.1"
     oidc-token-hash "^5.0.1"
+
+openpgp@^5.8.0:
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/openpgp/-/openpgp-5.9.0.tgz#f7ebe7b1e228aebc494835509ec9239853faed61"
+  integrity sha512-wEI6TAinCAq8ZLZA4oZ3ZtJ2BhhHj+CiPCd8TzE7zCicr0V8tvG5UF76OtddLLOJcK63w3Aj3KiRd+VLMScirQ==
+  dependencies:
+    asn1.js "^5.0.0"
 
 optionator@^0.9.1:
   version "0.9.1"
@@ -7400,10 +7427,10 @@ smartwrap@^2.0.2:
     wcwidth "^1.0.1"
     yargs "^15.1.0"
 
-snyk-broker@^4.137.9:
-  version "4.144.1"
-  resolved "https://registry.yarnpkg.com/snyk-broker/-/snyk-broker-4.144.1.tgz#69c11b4cafd460bf97959e51cff6ac51a475f55a"
-  integrity sha512-gZrWRaWCzJmdKgV5/zyUW3GOhr6ztApsE/AKcM/Tgif5HJrNiEhUyRGxGfgQ+zOnuSTcudttBvcDE8riXMh15g==
+snyk-broker@^4.156.1:
+  version "4.157.1"
+  resolved "https://registry.yarnpkg.com/snyk-broker/-/snyk-broker-4.157.1.tgz#47b26fb068967b0ff1fc57a787bad9193b520413"
+  integrity sha512-W2QN+qoupAjUPXeAikhjocsfjQcE92vo0exLT3fpGOPliZmxwC7UCY+XgZAjVV8PezcfP211Sem4UG/COQRiwA==
   dependencies:
     "@types/minimist" "^1.2.0"
     "@types/request" "^2.48.5"
@@ -7413,7 +7440,7 @@ snyk-broker@^4.137.9:
     bunyan "^1.8.12"
     camelcase "^5.3.1"
     clarify "^2.0.0"
-    dotenv "^6.2.0"
+    dotenv "^16.0.3"
     ejson "^2.2.0"
     engine.io "^6.2.1"
     engine.io-client "^5.2.0"
@@ -7426,6 +7453,7 @@ snyk-broker@^4.137.9:
     minimatch "^3.0.4"
     minimist "^1.2.5"
     node-cache "^5.1.0"
+    openpgp "^5.8.0"
     path-to-regexp "^1.8.0"
     primus "^6.1.0"
     primus-emitter "^3.1.1"
@@ -7433,13 +7461,13 @@ snyk-broker@^4.137.9:
     qs "^6.9.1"
     request "^2.88.1"
     request-promise-native "^1.0.9"
-    snyk-config "^4.0.0-rc.2"
+    snyk-config "^4.0.0"
     then-fs "^2.0.0"
     tunnel "0.0.6"
     undefsafe "^2.0.2"
     uuid "^8.1.0"
 
-snyk-config@^4.0.0-rc.2:
+snyk-config@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/snyk-config/-/snyk-config-4.0.0.tgz#21d459f19087991246cc07a7ffb4501dce6f4159"
   integrity sha512-E6jNe0oUjjzVASWBOAc/mA23DhbzABDF9MI6UZvl0gylh2NSXSXw2/LjlqMNOKL2c1qkbSkzLOdIX5XACoLCAQ==
