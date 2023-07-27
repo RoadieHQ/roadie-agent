@@ -37,12 +37,12 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@backstage/catalog-model": "^1.2.1",
-    "@backstage/plugin-catalog-backend": "^1.8.0",
+    "@backstage/plugin-catalog-backend": "^1.9.1",
     "@backstage/plugin-catalog-node": "^1.2.1",
     "@changesets/cli": "^2.18.0",
     "express": "^4.17.1",
     "node-fetch": "^2.6.11",
-    "pino": "^8.7.0",
+    "pino": "^8.14.1",
     "snyk-broker": "^4.137.9"
   },
   "devDependencies": {
