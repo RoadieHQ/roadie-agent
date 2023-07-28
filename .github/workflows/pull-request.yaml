@@ -20,7 +20,7 @@ jobs:
           push: false
           tags: roadiehq/broker-base
           context: dockerfiles
-          file: base.Dockerfile
+          file: ./base.Dockerfile
       - name: Build Kubernetes
         uses: docker/build-push-action@v4
         with:
