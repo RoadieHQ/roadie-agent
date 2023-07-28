@@ -1,4 +1,4 @@
-FROM roadiehq/broker-base as base
+FROM roadiehq/broker:base as base
 
 MAINTAINER Roadie
 
