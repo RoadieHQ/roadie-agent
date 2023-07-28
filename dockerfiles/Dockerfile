@@ -14,7 +14,7 @@ RUN npm install --global snyk-broker
 RUN rm -rf /home/node/.npm-global/lib/node_modules/snyk-broker/node_modules/setheader/node_modules/debug
 
 
-FROM roadiehq/broker-base
+FROM roadiehq/broker:base
 ENV PATH=$PATH:/home/node/.npm-global/bin
 COPY --from=base /home/node/.npm-global /home/node/.npm-global
 COPY --from=base /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
