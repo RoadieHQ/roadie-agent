@@ -26,7 +26,6 @@ jobs:
       - name: Build Base Image
         uses: docker/build-push-action@v4
         with:
-          push: false
           tags: roadiehq/broker-base
           context: dockerfiles
           file: dockerfiles/base.Dockerfile
