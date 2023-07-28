@@ -23,6 +23,13 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+      - name: Build Base Image
+        uses: docker/build-push-action@v4
+        with:
+          push: false
+          tags: roadiehq/broker-base
+          context: dockerfiles
+          file: base.Dockerfile
       - name: Build Kubernetes
         uses: docker/build-push-action@v4
         with:
