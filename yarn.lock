@@ -7991,10 +7991,10 @@ smartwrap@^2.0.2:
     wcwidth "^1.0.1"
     yargs "^15.1.0"
 
-snyk-broker@^4.156.1:
-  version "4.157.1"
-  resolved "https://registry.yarnpkg.com/snyk-broker/-/snyk-broker-4.157.1.tgz#47b26fb068967b0ff1fc57a787bad9193b520413"
-  integrity sha512-W2QN+qoupAjUPXeAikhjocsfjQcE92vo0exLT3fpGOPliZmxwC7UCY+XgZAjVV8PezcfP211Sem4UG/COQRiwA==
+snyk-broker@^4.157.2:
+  version "4.157.5"
+  resolved "https://registry.yarnpkg.com/snyk-broker/-/snyk-broker-4.157.5.tgz#17910c14cc082e3a372e27b08c1f1edc30a55ed0"
+  integrity sha512-twUB9KaxwSfd0TDEBg258TXzFLDn4gAYrAQgYtVkvhw41pJGjy+QE5Jrs4XBNTKiq4R734HkNK95twoPYMeo7A==
   dependencies:
     "@types/minimist" "^1.2.0"
     "@types/request" "^2.48.5"
