@@ -27,6 +27,24 @@
         "scheme": "basic",
         "token": "${SONARQUBE_TOKEN}:"
       }
+    },
+    {
+      "method": "GET",
+      "path": "/api/issues/search",
+      "origin": "${SONARQUBE_INSTANCE_URL}",
+      "auth": {
+        "scheme": "basic",
+        "token": "${SONARQUBE_TOKEN}:"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/hotspots/search",
+      "origin": "${SONARQUBE_INSTANCE_URL}",
+      "auth": {
+        "scheme": "basic",
+        "token": "${SONARQUBE_TOKEN}:"
+      }
     }
   ]
 }
