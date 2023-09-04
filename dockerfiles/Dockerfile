@@ -14,6 +14,10 @@ RUN npm install --global snyk-broker
 RUN rm -rf /home/node/.npm-global/lib/node_modules/snyk-broker/node_modules/setheader/node_modules/debug
 
 
+RUN rm -rf /home/node/.npm-global/lib/node_modules/snyk-broker/node_modules/tough-cookie
+RUN npm i -g tough-cookie@4.1.3
+RUN mv /home/node/.npm-global/lib/node_modules/tough-cookie /home/node/.npm-global/lib/node_modules/snyk-broker/node_modules
+
 FROM roadiehq/broker:base
 ENV PATH=$PATH:/home/node/.npm-global/bin
 COPY --from=base /home/node/.npm-global /home/node/.npm-global
