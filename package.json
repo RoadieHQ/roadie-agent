@@ -42,7 +42,7 @@
     "@changesets/cli": "^2.26.2",
     "express": "^4.17.1",
     "node-fetch": "^2.6.11",
-    "pino": "^8.14.1",
+    "pino": "^8.14.2",
     "snyk-broker": "^4.156.1"
   },
   "devDependencies": {
