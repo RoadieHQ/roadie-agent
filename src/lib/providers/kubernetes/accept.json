@@ -1,0 +1,15 @@
+{
+  "private": [
+    {
+      "method": "GET",
+      "path": "/agent-provider/*",
+      "origin": "http://localhost:7342"
+    }
+  ],
+  "public": [
+    {
+      "method": "any",
+      "path": "/*"
+    }
+  ]
+}

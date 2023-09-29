@@ -11,9 +11,12 @@ export interface AgentConfiguration<
   type: AgentConfigurationType;
   name: string;
 }
+
+export type EntityProviderHandler = (emit: (mutation: EntityProviderMutation) => Promise<void>) => void;
+
 export interface EntityProviderAgentConfiguration
   extends AgentConfiguration<'entity-provider'> {
-  handler: (emit: (mutation: EntityProviderMutation) => Promise<void>) => void;
+  handler: EntityProviderHandler;
 }
 export type TechInsightsDataSourceAgentConfiguration =
   AgentConfiguration<'tech-insights-data-source'>;

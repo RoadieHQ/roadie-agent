@@ -29,25 +29,25 @@ jobs:
           push: true
           tags: roadiehq/broker:base
           context: dockerfiles
-          file: dockerfiles/base.Dockerfile
+          file: dockerfiles/plugins/base.Dockerfile
       - name: Build Kubernetes
         uses: docker/build-push-action@v4
         with:
           push: true
-          file: dockerfiles/Dockerfile
-          context: dockerfiles/kubernetes
+          file: dockerfiles/plugins/Dockerfile
+          context: dockerfiles/plugins/kubernetes
           tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-kubernetes,roadiehq/broker:kubernetes
       - name: Build Sonarqube
         uses: docker/build-push-action@v4
         with:
           push: true
-          file: dockerfiles/Dockerfile
-          context: dockerfiles/sonarqube
+          file: dockerfiles/plugins/Dockerfile
+          context: dockerfiles/plugins/sonarqube
           tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-sonarqube,roadiehq/broker:sonarqube
       - name: Build Jenkins
         uses: docker/build-push-action@v4
         with:
           push: true
-          file: dockerfiles/Dockerfile
-          context: dockerfiles/jenkins
+          file: dockerfiles/plugins/Dockerfile
+          context: dockerfiles/plugins/jenkins
           tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-jenkins,roadiehq/broker:jenkins
