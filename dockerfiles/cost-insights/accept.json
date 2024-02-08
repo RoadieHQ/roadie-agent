@@ -1,0 +1,24 @@
+{
+  "private": [
+    {
+      "method": "GET",
+      "path": "/last-completed-billing-date",
+      "origin": "${COST_INSIGHTS_API_URL}"
+    }  ,  {
+      "method": "GET",
+      "path": "/group-daily-cost/:group",
+      "origin": "${COST_INSIGHTS_API_URL}"
+    },    {
+      "method": "GET",
+      "path": "/product-insights/:product",
+      "origin": "${COST_INSIGHTS_API_URL}"
+    }
+  ],
+  "public": [
+    {
+      "//": "Get broker connection status",
+      "method": "GET",
+      "path": "/healthcheck"
+    }
+  ]
+}
