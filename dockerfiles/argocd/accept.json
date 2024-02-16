@@ -1,0 +1,38 @@
+{
+  "public": [
+    {
+      "//": "Get broker connection status",
+      "method": "GET",
+      "path": "/healthcheck"
+    }
+  ],
+  "private": [
+    {
+      "method": "GET",
+      "path": "/applications",
+      "origin": "${ARGOCD_URL}",
+      "auth": {
+        "scheme": "bearer",
+        "token": "${ARGOCD_AUTH_TOKEN}"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/applications/*",
+      "origin": "${ARGOCD_URL}",
+      "auth": {
+        "scheme": "bearer",
+        "token": "${ARGOCD_AUTH_TOKEN}"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/argoInstance/*",
+      "origin": "${ARGOCD_URL}",
+      "auth": {
+        "scheme": "bearer",
+        "token": "${ARGOCD_AUTH_TOKEN}"
+      }
+    }
+  ]
+}

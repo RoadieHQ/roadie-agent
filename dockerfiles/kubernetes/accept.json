@@ -1,5 +1,11 @@
 {
-  "public": [],
+  "public": [
+    {
+      "//": "Get broker connection status",
+      "method": "GET",
+      "path": "/healthcheck"
+    }
+  ],
   "private": [
     {
       "method": "GET",
