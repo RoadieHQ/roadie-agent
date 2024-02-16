@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [ -z "$COST_INSIGHTS_API_URL"]; then
+  echo "You must provide COST_INSIGHTS_API_URL"
+  exit 1
+fi
+
+exec broker --verbose --disableBodyVarsSubstitution --disableHeaderVarsSubstitution

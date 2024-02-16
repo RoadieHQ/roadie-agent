@@ -51,6 +51,13 @@ jobs:
           file: dockerfiles/Dockerfile
           context: dockerfiles/jenkins
           tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-jenkins,roadiehq/broker:jenkins
+      - name: Build Cost Insights
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          file: dockerfiles/Dockerfile
+          context: dockerfiles/cost-insights
+          tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-cost-insights,roadiehq/broker:cost-insights
       - name: Build ArgoCD
         uses: docker/build-push-action@v4
         with:
