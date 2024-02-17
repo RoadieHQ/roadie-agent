@@ -43,7 +43,7 @@
     "express": "^4.17.1",
     "node-fetch": "^2.6.11",
     "pino": "^8.14.2",
-    "snyk-broker": "^4.161.5"
+    "snyk-broker": "^4.166.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.18",
