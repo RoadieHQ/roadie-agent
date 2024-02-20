@@ -7,13 +7,15 @@ import {
   TechInsightsDataSourceAgentConfiguration,
 } from '$/types';
 import { RoadieAgentReceiver } from '@/RoadieAgentReceiver';
-import { RoadieAgentForwarder } from '@/RoadieAgentForwarder';
 
 const BROKER_CLIENT_URL = 'http://localhost';
+
 export class RoadieAgent {
-  constructor(private readonly config: RoadieAgentConfiguration) {}
+  constructor(private readonly config: RoadieAgentConfiguration) {
+  }
 
   private agentConfigurations: AvailableAgentConfiguration[] = [];
+
   static fromConfig(
     config: RoadieAgentConfiguration = {
       server: 'http://localhost:7341',
@@ -32,12 +34,14 @@ export class RoadieAgent {
     this.agentConfigurations.push(entityProviderAgentConfiguration);
     return this;
   }
+
   addScaffolderAction(
     scaffolderActionAgentConfiguration: ScaffolderActionAgentConfiguration,
   ) {
     this.agentConfigurations.push(scaffolderActionAgentConfiguration);
     return this;
   }
+
   addTechInsightsDataSource(
     techInsightsDataSourceConfiguration: TechInsightsDataSourceAgentConfiguration,
   ) {
@@ -46,12 +50,9 @@ export class RoadieAgent {
   }
 
   start() {
-    const forwarder = new RoadieAgentForwarder({
-      brokerClientUrl: `${BROKER_CLIENT_URL}:${this.config.port}`,
-    });
     const receiver = new RoadieAgentReceiver(
       this.agentConfigurations,
-      forwarder,
+      `${BROKER_CLIENT_URL}:${this.config.port}`,
       {
         port: this.config.agentPort,
       },
