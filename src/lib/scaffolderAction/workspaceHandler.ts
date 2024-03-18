@@ -102,6 +102,9 @@ export async function generateAndStreamZipfileToS3(
     );
 
     logger.info('File uploaded');
+
+    // AWS S3 produces etags that are wrapped in `"`. It's implemented according to spec and will never change
+    // See: for example https://github.com/aws/aws-sdk-net/issues/815
     const etag = (response?.headers?.etag as string)?.replaceAll('"', '');
     logger.info(etag);
     return etag;
