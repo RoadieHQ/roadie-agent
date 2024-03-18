@@ -6,7 +6,7 @@
       "origin": "http://localhost:7044"
     }  ,
     {
-      "method": "GET",
+      "method": "POST",
       "path": "/scaffolder-action/*",
       "origin": "http://localhost:7044"
     }

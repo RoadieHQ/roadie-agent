@@ -42,7 +42,7 @@ export class RoadieAgentReceiver {
 
   constructRequestListener(agentConfigurations: AvailableAgentConfiguration[]) {
     const app = express();
-
+    app.use(express.json());
     app.disable('x-powered-by');
     agentConfigurations.forEach((configuration) => {
       switch (configuration.type) {
@@ -89,21 +89,19 @@ export class RoadieAgentReceiver {
     app: Express,
   ) {
     // Specifying routes explicitly
-    app.get(`/scaffolder-action/${configuration.name}`, (req, res) => {
+    app.post(`/scaffolder-action/${configuration.name}`, (req, res) => {
       this.logger.info(
         `Received scaffolder action trigger for endpoint ${configuration.name}`,
       );
 
-      const body = JSON.parse(Buffer.from(req.query.body as string, 'base64').toString());
-      const workspaceUrl = req.query.presign !== 'undefined' ? Buffer.from(req.query.presign as string, 'base64').toString() : undefined;
-      const actionId = req.query.actionId as string;
+      const { body, getPresign, putPresign, actionId } = req.body;
 
       const scaffolderAction = new CustomScaffolderAction({
         configuration,
         actionId,
         brokerClientUrl: this.brokerClientUrl,
         payload: {
-          body, workspaceUrl,
+          body, getPresign, putPresign,
         },
       });
       void scaffolderAction.start();

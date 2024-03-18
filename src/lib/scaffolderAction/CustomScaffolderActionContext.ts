@@ -12,9 +12,10 @@ export class CustomScaffolderActionContext implements ScaffolderActionContext {
 
 
   readonly workspacePath: string;
-  readonly payload: { body: Record<string, string>; localWorkspacePath: string };
+  readonly payload: { body: Record<string, string>; };
 
-  constructor({ brokerClientUrl, actionId, payload }: { brokerClientUrl: string, actionId: string, payload: {
+  constructor({ brokerClientUrl, actionId, payload }: {
+    brokerClientUrl: string, actionId: string, payload: {
       body: Record<string, string>, localWorkspacePath: string
     }
   }) {

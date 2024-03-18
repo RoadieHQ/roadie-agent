@@ -4,31 +4,42 @@ import { ScaffolderActionAgentConfiguration } from '$/types';
 import { CustomScaffolderActionContext } from '@/scaffolderAction/CustomScaffolderActionContext';
 import { AGENT_SCAFFOLDER_FINALIZE_PATH } from './constants';
 import fetch from 'node-fetch';
-import { downloadFile, generateAndStreamZipfileToS3 } from '@/scaffolderAction/workspaceHandler';
+import {
+  downloadFile,
+  generateAndStreamZipfileToS3,
+} from '@/scaffolderAction/workspaceHandler';
 
 export class CustomScaffolderAction {
-
   private readonly brokerClientUrl: string;
   private readonly logger: BaseLogger;
   private readonly configuration: ScaffolderActionAgentConfiguration;
   private readonly context: CustomScaffolderActionContext;
   private readonly actionId: string;
-  private readonly workspaceUrl?: string;
+  private readonly getPresign?: string;
+  private readonly putPresign?: string;
   private readonly localWorkspacePath: string;
 
-  constructor({ actionId, configuration, brokerClientUrl, payload }: {
-    actionId: string
-    configuration: ScaffolderActionAgentConfiguration,
-    brokerClientUrl: string
+  constructor({
+    actionId,
+    configuration,
+    brokerClientUrl,
+    payload,
+  }: {
+    actionId: string;
+    configuration: ScaffolderActionAgentConfiguration;
+    brokerClientUrl: string;
     payload: {
-      body: Record<string, string>, workspaceUrl?: string
-    }
+      body: Record<string, string>;
+      putPresign?: string;
+      getPresign?: string;
+    };
   }) {
     const localWorkspacePath = `/tmp/scaffolder/${actionId}`;
     this.actionId = actionId;
     this.brokerClientUrl = brokerClientUrl;
     this.configuration = configuration;
-    this.workspaceUrl = payload.workspaceUrl;
+    this.getPresign = payload.getPresign;
+    this.putPresign = payload.putPresign;
     this.localWorkspacePath = localWorkspacePath;
     this.logger = getLogger('RoadieAgentForwarder');
     this.context = new CustomScaffolderActionContext({
@@ -39,37 +50,35 @@ export class CustomScaffolderAction {
   }
 
   async start() {
-
-    this.logger.info('Starting a custom scaffolder action in 5 seconds:');
-    // TODO: Figure out read-after write consistency
-    await new Promise(resolve => setTimeout(resolve, 5000));
+    this.logger.info('Starting a custom scaffolder action');
     try {
-      // TODO: filesystem handling: Create folder and temp workspace
-      console.log(this.workspaceUrl);
-      if (this.workspaceUrl && this.workspaceUrl !== 'undefined') {
-        await downloadFile(this.workspaceUrl, this.localWorkspacePath);
+      if (this.getPresign && this.getPresign !== '') {
+        await downloadFile(this.getPresign, this.localWorkspacePath);
       }
 
       await this.configuration.handler(this.context);
 
-      if (this.workspaceUrl && this.workspaceUrl !== 'undefined') {
-        const workspaceUrl = (await generateAndStreamZipfileToS3(this.localWorkspacePath, this.actionId))!;
-        await this.finalizeAction('success', { workspace: Buffer.from(workspaceUrl).toString('base64') });
+      if (this.putPresign && this.putPresign !== '') {
+        const etag = await generateAndStreamZipfileToS3(
+          this.putPresign,
+          this.localWorkspacePath,
+        );
+        await this.finalizeAction('success', { workspace: true, etag });
       } else {
         await this.finalizeAction('success', {});
       }
-
-
-    } catch (e) {
+    } catch (e: any) {
       this.logger.error('Failed to run scaffolder action');
       this.logger.error(e);
-      await this.finalizeAction('failure');
+      await this.finalizeAction('failure', { message: e.message });
     }
   }
 
-  async finalizeAction(status: string, payload?: Record<string, string>) {
+  async finalizeAction(status: string, payload?: Record<string, any>) {
     {
-      this.logger.info(`Finalizing scaffolder action ${this.configuration.name}`);
+      this.logger.info(
+        `Finalizing scaffolder action ${this.configuration.name}`,
+      );
       const url = `${this.brokerClientUrl}/${AGENT_SCAFFOLDER_FINALIZE_PATH}/${this.actionId}`;
       const body = JSON.stringify({
         status,

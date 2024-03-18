@@ -11,20 +11,20 @@ import { RoadieAgentReceiver } from '@/RoadieAgentReceiver';
 const BROKER_CLIENT_URL = 'http://localhost';
 
 export class RoadieAgent {
-  constructor(private readonly config: RoadieAgentConfiguration) {
-  }
+  private readonly config: RoadieAgentConfiguration;
 
+  constructor(config: Partial<RoadieAgentConfiguration> = {}) {
+    this.config = {
+      server: config.server ?? 'http://localhost:7341',
+      port: config.port ?? 7342,
+      identifier: config.identifier ?? 'example',
+      accept: config.accept ?? 'config/accept.json',
+      agentPort: config.agentPort ?? 7044,
+    };
+  }
   private agentConfigurations: AvailableAgentConfiguration[] = [];
 
-  static fromConfig(
-    config: RoadieAgentConfiguration = {
-      server: 'http://localhost:7341',
-      port: 7342,
-      identifier: 'example',
-      accept: 'config/accept.json',
-      agentPort: 7044,
-    },
-  ) {
+  static fromConfig(config: Partial<RoadieAgentConfiguration> = {}) {
     return new RoadieAgent(config);
   }
 
