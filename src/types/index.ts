@@ -5,20 +5,31 @@ export type AvailableAgents =
   | 'tech-insights-data-source'
   | 'scaffolder-action';
 
+export interface ScaffolderActionContext {
+  log: (content: string, context?: Record<string, string>) => Promise<void>;
+  workspacePath: string;
+  payload: { body: Record<string, string> };
+}
+
 export interface AgentConfiguration<
   AgentConfigurationType extends AvailableAgents,
 > {
   type: AgentConfigurationType;
   name: string;
 }
+
 export interface EntityProviderAgentConfiguration
   extends AgentConfiguration<'entity-provider'> {
   handler: (emit: (mutation: EntityProviderMutation) => Promise<void>) => void;
 }
+
+export interface ScaffolderActionAgentConfiguration
+  extends AgentConfiguration<'scaffolder-action'> {
+  handler: (context: ScaffolderActionContext) => Promise<void>;
+}
+
 export type TechInsightsDataSourceAgentConfiguration =
   AgentConfiguration<'tech-insights-data-source'>;
-export type ScaffolderActionAgentConfiguration =
-  AgentConfiguration<'scaffolder-action'>;
 
 export type AvailableAgentConfiguration =
   | EntityProviderAgentConfiguration

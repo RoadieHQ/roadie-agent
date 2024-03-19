@@ -3,27 +3,29 @@ import {
   AvailableAgentConfiguration,
   EntityProviderAgentConfiguration,
   HandlerConfig,
+  ScaffolderActionAgentConfiguration,
 } from '$/types';
-import { RoadieAgentForwarder } from '@/RoadieAgentForwarder';
 import { getLogger } from '@/logger';
 import { BaseLogger } from 'pino';
+import { CustomScaffolderAction } from '@/scaffolderAction/CustomScaffolderAction';
+import { createEntityEmitter } from '@/entityProvider/createEntityEmitter';
 
 export class RoadieAgentReceiver {
   private server: Express;
-  private agentConfigurations: Map<string, AvailableAgentConfiguration>;
-  private handlerConfig: HandlerConfig;
-  private forwarder: RoadieAgentForwarder;
-  private logger: BaseLogger;
+  private readonly agentConfigurations: Map<string, AvailableAgentConfiguration>;
+  private readonly handlerConfig: HandlerConfig;
+  private readonly logger: BaseLogger;
+  private readonly brokerClientUrl: string;
 
   constructor(
     agentConfigurations: AvailableAgentConfiguration[],
-    forwarder: RoadieAgentForwarder,
+    brokerClientUrl: string,
     handlerConfig: HandlerConfig,
   ) {
     this.server = this.constructRequestListener(agentConfigurations);
     this.handlerConfig = handlerConfig;
-    this.forwarder = forwarder;
-    this.logger = getLogger('RoadieAgentForwarder');
+    this.brokerClientUrl = brokerClientUrl;
+    this.logger = getLogger('RoadieAgentReceiver');
     this.agentConfigurations = agentConfigurations.reduce(
       (acc, agentConfiguration) => {
         acc.set(agentConfiguration.name, agentConfiguration);
@@ -32,6 +34,7 @@ export class RoadieAgentReceiver {
       new Map<string, AvailableAgentConfiguration>(),
     );
   }
+
   start() {
     this.logger.info('Starting Roadie Agent Receiver webserver');
     this.server.listen(this.handlerConfig.port);
@@ -39,7 +42,7 @@ export class RoadieAgentReceiver {
 
   constructRequestListener(agentConfigurations: AvailableAgentConfiguration[]) {
     const app = express();
-
+    app.use(express.json());
     app.disable('x-powered-by');
     agentConfigurations.forEach((configuration) => {
       switch (configuration.type) {
@@ -47,8 +50,12 @@ export class RoadieAgentReceiver {
           this.registerEntityProvider(configuration, app);
 
           break;
-        case 'tech-insights-data-source':
         case 'scaffolder-action':
+          this.registerScaffolderAction(configuration, app);
+
+          break;
+        case 'tech-insights-data-source':
+
           throw new Error(
             `Roadie Agent functionality of type ${configuration.type} not yet implemented.`,
           );
@@ -64,8 +71,8 @@ export class RoadieAgentReceiver {
   ) {
     // Specifying routes explicitly
     app.get(`/agent-provider/${configuration.name}`, (req, res) => {
-      const entityEmitter = this.forwarder.createEntityEmitter(
-        configuration.name,
+      const entityEmitter = createEntityEmitter(
+        configuration.name, this.brokerClientUrl,
       );
       this.logger.info(
         `Received entity emitting trigger for endpoint ${configuration.name}`,
@@ -76,4 +83,36 @@ export class RoadieAgentReceiver {
       );
     });
   }
+
+  private registerScaffolderAction(
+    configuration: ScaffolderActionAgentConfiguration,
+    app: Express,
+  ) {
+    // Specifying routes explicitly
+    app.post(`/scaffolder-action/${configuration.name}`, (req, res) => {
+      this.logger.info(
+        `Received scaffolder action trigger for endpoint ${configuration.name}`,
+      );
+
+      const { body, getPresign, putPresign, actionId } = req.body;
+
+      const scaffolderAction = new CustomScaffolderAction({
+        configuration,
+        actionId,
+        brokerClientUrl: this.brokerClientUrl,
+        payload: {
+          body, getPresign, putPresign,
+        },
+      });
+      void scaffolderAction.start();
+
+      res.json({
+        message:
+          `Triggered custom scaffolder action event for Roadie Agent ${configuration.name}`,
+      });
+    })
+    ;
+  }
+
+
 }

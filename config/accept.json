@@ -4,6 +4,11 @@
       "method": "GET",
       "path": "/agent-provider/*",
       "origin": "http://localhost:7044"
+    }  ,
+    {
+      "method": "POST",
+      "path": "/scaffolder-action/*",
+      "origin": "http://localhost:7044"
     }
   ],
   "public": [

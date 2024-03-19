@@ -7,22 +7,24 @@ import {
   TechInsightsDataSourceAgentConfiguration,
 } from '$/types';
 import { RoadieAgentReceiver } from '@/RoadieAgentReceiver';
-import { RoadieAgentForwarder } from '@/RoadieAgentForwarder';
 
 const BROKER_CLIENT_URL = 'http://localhost';
-export class RoadieAgent {
-  constructor(private readonly config: RoadieAgentConfiguration) {}
 
+export class RoadieAgent {
+  private readonly config: RoadieAgentConfiguration;
+
+  constructor(config: Partial<RoadieAgentConfiguration> = {}) {
+    this.config = {
+      server: config.server ?? 'http://localhost:7341',
+      port: config.port ?? 7342,
+      identifier: config.identifier ?? 'example',
+      accept: config.accept ?? 'config/accept.json',
+      agentPort: config.agentPort ?? 7044,
+    };
+  }
   private agentConfigurations: AvailableAgentConfiguration[] = [];
-  static fromConfig(
-    config: RoadieAgentConfiguration = {
-      server: 'http://localhost:7341',
-      port: 7342,
-      identifier: 'example',
-      accept: 'config/accept.json',
-      agentPort: 7044,
-    },
-  ) {
+
+  static fromConfig(config: Partial<RoadieAgentConfiguration> = {}) {
     return new RoadieAgent(config);
   }
 
@@ -32,12 +34,14 @@ export class RoadieAgent {
     this.agentConfigurations.push(entityProviderAgentConfiguration);
     return this;
   }
+
   addScaffolderAction(
     scaffolderActionAgentConfiguration: ScaffolderActionAgentConfiguration,
   ) {
     this.agentConfigurations.push(scaffolderActionAgentConfiguration);
     return this;
   }
+
   addTechInsightsDataSource(
     techInsightsDataSourceConfiguration: TechInsightsDataSourceAgentConfiguration,
   ) {
@@ -46,12 +50,9 @@ export class RoadieAgent {
   }
 
   start() {
-    const forwarder = new RoadieAgentForwarder({
-      brokerClientUrl: `${BROKER_CLIENT_URL}:${this.config.port}`,
-    });
     const receiver = new RoadieAgentReceiver(
       this.agentConfigurations,
-      forwarder,
+      `${BROKER_CLIENT_URL}:${this.config.port}`,
       {
         port: this.config.agentPort,
       },

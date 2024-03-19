@@ -16,7 +16,7 @@ The agent webserver runs by default in `http://localhost:7044` and has a specifi
 1. Run `npm install @roadiehq/roadie-agent` or `yarn add @roadiehq/roadie-agent` (or equivalent) depending on your preferred choice of package manager.
 2. Run `npm install` or `yarn` (or equivalent).
 
-(With default settings) Create a folder called `config` at the root of your project and copy `provider-accept.json` file from the installed packages config folder into it. Alternatively the default configuration can be copy-pasted from below:
+(With default settings) Create a folder called `config` at the root of your project and copy `accept.json` file from the installed packages config folder into it. Alternatively the default configuration can be copy-pasted from below:
 <details>
 
 <summary>Click to expand</summary>
@@ -29,6 +29,11 @@ The agent webserver runs by default in `http://localhost:7044` and has a specifi
       "method": "GET",
       "path": "/agent-provider/*",
       "origin": "http://localhost:7044"
+    }  ,
+    {
+      "method": "POST",
+      "path": "/scaffolder-action/*",
+      "origin": "http://localhost:7044"
     }
   ],
   "public": [
@@ -38,6 +43,7 @@ The agent webserver runs by default in `http://localhost:7044` and has a specifi
     }
   ]
 }
+
 ```
 
 </details>
@@ -100,6 +106,74 @@ RoadieAgent.fromConfig({
 </details>
 
 ### Handler types
+
+#### Custom Scaffolder Action
+
+The Custom Scaffolder Action agent library allows you to run self-hosted Scaffolder actions on your Roadie instance. The library takes care of establishing a secure communication channel to your Roadie server, to receiving and triggering your custom action logic, and to handle the sharing of workspace and related files between the Roadie hosted builtin actions and your self-hosted Custom Actions. 
+
+You can create a Roadie Agent driven Custom Scaffolder actions by using the `createRoadieAgentScaffolderAction` helper function. This function expects two arguments, one naming the action itself and a handler to provide the actual custom action logic. Note that the `name` defined in here **needs to match** the one configured in your Roadie instance.
+
+Custom Scaffolder Action handler is a function that receives a `context` callback. This callback contains information about the `payload` appended to the template when run on Roadie, the location of the possible `workspacePath` which has been transferred from Roadie Scaffolder Task to your local Custom Action location and a `log` function which can be used to inform the running Scaffolder Action in Roadie to log events for the end user. You can see the type definition below.  
+
+<details>
+<summary>Show type</summary>
+
+```typescript
+export interface ScaffolderActionContext {
+  log: (content: string, context?: Record<string, string>) => Promise<void>; 
+  workspacePath: string;
+  payload: { body: Record<string, string> };
+}
+```
+</details>
+
+You can initialize a Custom Scaffolder Action by configuring the name and handler function, along with the needed connection parameters to your Roadie Broker URL. 
+
+
+<details>
+<summary>Show Example Custom Scaffolder Action</summary>
+
+```javascript
+// my-action.js
+import { RoadieAgent, createRoadieAgentScaffolderAction } from '@roadiehq/roadie-agent';
+import fs from 'fs';
+
+const config = {
+  server: 'https://my-roadie-instance.broker.roadie.so',
+  identifier: 'roadie-custom-action-token',
+};
+
+RoadieAgent.fromConfig(config)
+  .addScaffolderAction(
+    createRoadieAgentScaffolderAction({
+      name: 'test-action', // The name of the action as defined in Roadie
+      handler: async (ctx) => {
+        try {
+          fs.writeFileSync(
+            `${ctx.workspacePath}/test.txt`,
+            'new file with new contents',
+          ); 
+          // Writing a new file into the shared workspace
+        } catch (err) {
+          console.error(err);  // Local logging on the Roadie Agent process
+        }
+
+        let count = 0;
+        while (count < 5) {  // Additional other actions that is wanted to be taken. This time looping for 5 seconds
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          count++;
+          ctx.log(`hello world`); // Sending a log message to be displayed to the enduser
+        } 
+      },
+    }),
+  )
+  .start();
+
+```
+</details>
+
+You can run this single file with a command `node my-action.js` after you have installed the needed dependencies for the project. 
+
 
 #### Entity Provider
 
