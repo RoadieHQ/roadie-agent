@@ -3,8 +3,10 @@ import { AGENT_ENTITY_PROVIDER_PATH } from '@/entityProvider/constants';
 import fetch from 'node-fetch';
 import { getLogger } from '@/logger';
 
-export const createEntityEmitter = (target: string, brokerClientUrl: string) => {
-
+export const createEntityEmitter = (
+  target: string,
+  brokerClientUrl: string,
+) => {
   const logger = getLogger('RoadieAgentEntityEmitter');
 
   logger.info(`Creating new entity emitter for target ${target}`);
