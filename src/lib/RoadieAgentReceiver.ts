@@ -12,7 +12,10 @@ import { createEntityEmitter } from '@/entityProvider/createEntityEmitter';
 
 export class RoadieAgentReceiver {
   private server: Express;
-  private readonly agentConfigurations: Map<string, AvailableAgentConfiguration>;
+  private readonly agentConfigurations: Map<
+    string,
+    AvailableAgentConfiguration
+  >;
   private readonly handlerConfig: HandlerConfig;
   private readonly logger: BaseLogger;
   private readonly brokerClientUrl: string;
@@ -55,7 +58,6 @@ export class RoadieAgentReceiver {
 
           break;
         case 'tech-insights-data-source':
-
           throw new Error(
             `Roadie Agent functionality of type ${configuration.type} not yet implemented.`,
           );
@@ -72,7 +74,8 @@ export class RoadieAgentReceiver {
     // Specifying routes explicitly
     app.get(`/agent-provider/${configuration.name}`, (req, res) => {
       const entityEmitter = createEntityEmitter(
-        configuration.name, this.brokerClientUrl,
+        configuration.name,
+        this.brokerClientUrl,
       );
       this.logger.info(
         `Received entity emitting trigger for endpoint ${configuration.name}`,
@@ -101,18 +104,16 @@ export class RoadieAgentReceiver {
         actionId,
         brokerClientUrl: this.brokerClientUrl,
         payload: {
-          body, getPresign, putPresign,
+          body,
+          getPresign,
+          putPresign,
         },
       });
       void scaffolderAction.start();
 
       res.json({
-        message:
-          `Triggered custom scaffolder action event for Roadie Agent ${configuration.name}`,
+        message: `Triggered custom scaffolder action event for Roadie Agent ${configuration.name}`,
       });
-    })
-    ;
+    });
   }
-
-
 }

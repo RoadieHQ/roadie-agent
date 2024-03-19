@@ -1,4 +1,4 @@
-import {  ScaffolderActionAgentConfiguration } from '$/types';
+import { ScaffolderActionAgentConfiguration } from '$/types';
 
 export type RoadieAgentScaffolderActionConfiguration = Omit<
   ScaffolderActionAgentConfiguration,
