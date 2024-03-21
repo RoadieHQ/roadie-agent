@@ -1,3 +1,3 @@
 export * from './lib';
-export * from './types'
+export * from './types';
 export default undefined;
