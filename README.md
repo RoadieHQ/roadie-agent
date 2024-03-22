@@ -167,7 +167,7 @@ RoadieAgent.fromConfig(config)
         while (count < 5) {  // Additional other actions that is wanted to be taken. This time looping for 5 seconds
           await new Promise((resolve) => setTimeout(resolve, 1000));
           count++;
-          await ctx.log(`hello world`); // Sending a log message to be displayed to the enduser
+          await ctx.log(`hello world`); // Sending a log message to be displayed to the end user
         } 
       },
     }),
