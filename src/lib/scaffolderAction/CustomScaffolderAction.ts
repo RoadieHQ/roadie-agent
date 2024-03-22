@@ -8,6 +8,10 @@ import {
   downloadFile,
   generateAndStreamZipfileToS3,
 } from '@/scaffolderAction/workspaceHandler';
+import {
+  addRunningAction,
+  removeRunningAction,
+} from '@/scaffolderAction/runtimeContext';
 
 export class CustomScaffolderAction {
   private readonly brokerClientUrl: string;
@@ -52,6 +56,7 @@ export class CustomScaffolderAction {
   async start() {
     this.logger.info('Starting a custom scaffolder action');
     try {
+      addRunningAction(this.actionId);
       if (this.getPresign && this.getPresign !== '') {
         await downloadFile(this.getPresign, this.localWorkspacePath);
       }
@@ -85,6 +90,9 @@ export class CustomScaffolderAction {
         payload,
         actionId: this.actionId,
       });
+
+      removeRunningAction(this.actionId);
+
       const response = await fetch(url, {
         method: 'POST',
         body,
