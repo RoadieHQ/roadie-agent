@@ -65,6 +65,11 @@ RoadieAgent.fromConfig()
       handler: myEntityProviderHandler
     }),
   )
+  // Add second entity provider
+  // .addEntityProvider(...)   
+  
+  // Add a custom scaffolder action
+  // .addScaffolderAction(...) 
   .start();
 
 ```
@@ -162,11 +167,13 @@ RoadieAgent.fromConfig(config)
         while (count < 5) {  // Additional other actions that is wanted to be taken. This time looping for 5 seconds
           await new Promise((resolve) => setTimeout(resolve, 1000));
           count++;
-          ctx.log(`hello world`); // Sending a log message to be displayed to the enduser
+          await ctx.log(`hello world`); // Sending a log message to be displayed to the enduser
         } 
       },
     }),
   )
+  // Add a second custom scaffolder action
+  // .addScaffolderAction(...) 
   .start();
 
 ```

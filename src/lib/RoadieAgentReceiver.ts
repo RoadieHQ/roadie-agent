@@ -9,6 +9,7 @@ import { getLogger } from '@/logger';
 import { BaseLogger } from 'pino';
 import { CustomScaffolderAction } from '@/scaffolderAction/CustomScaffolderAction';
 import { createEntityEmitter } from '@/entityProvider/createEntityEmitter';
+import { isActionRunning } from '@/scaffolderAction/runtimeContext';
 
 export class RoadieAgentReceiver {
   private server: Express;
@@ -93,6 +94,12 @@ export class RoadieAgentReceiver {
   ) {
     // Specifying routes explicitly
     app.post(`/scaffolder-action/${configuration.name}`, (req, res) => {
+      if (req.body.livenessProbe) {
+        this.logger.info(`Received scaffolder action liveness probe`);
+        return res.json({
+          ok: isActionRunning(req.body.actionId),
+        });
+      }
       this.logger.info(
         `Received scaffolder action trigger for endpoint ${configuration.name}`,
       );
