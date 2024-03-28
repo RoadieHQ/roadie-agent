@@ -33,6 +33,34 @@
         "scheme": "bearer",
         "token": "${ARGOCD_AUTH_TOKEN}"
       }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/applications",
+      "origin": "${ARGOCD_URL}",
+      "auth": {
+        "scheme": "bearer",
+        "token": "${ARGOCD_AUTH_TOKEN}"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/applications/*",
+      "origin": "${ARGOCD_URL}",
+      "auth": {
+        "scheme": "bearer",
+        "token": "${ARGOCD_AUTH_TOKEN}"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/argoInstance/*",
+      "origin": "${ARGOCD_URL}",
+      "auth": {
+        "scheme": "bearer",
+        "token": "${ARGOCD_AUTH_TOKEN}"
+      }
     }
+
   ]
 }
