@@ -50,7 +50,7 @@
     "node-fetch": "^2.6.11",
     "pino": "^8.14.2",
     "snyk-broker": "4.161.5",
-    "unzipper": "^0.10.14"
+    "unzipper": "^0.12.1"
   },
   "devDependencies": {
     "@types/archiver": "^6.0.2",
