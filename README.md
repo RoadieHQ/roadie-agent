@@ -1,5 +1,7 @@
 # Roadie Agent Library
 
+This repository houses the Roadie Agent as well as dockerfiles for the Snyk Broker configured for different third party services which are published to DockerHub.
+
 ## What is Roadie Agent
 
 Roadie Agent library is functionality utilizing Snyk Broker to achieve a secure connection between customer infrastructure and running Roadie application. It utilizes a broker connection between a Broker client initialized by the Roadie Agent and a broker server running in Roadie infrastructure.
