@@ -1,0 +1,29 @@
+{
+  "public": [
+    {
+      "//": "Get broker connection status",
+      "method": "GET",
+      "path": "/healthcheck"
+    }
+  ],
+  "private": [
+    {
+      "method": "POST",
+      "path": "/graphql",
+        "origin": "${GHES_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GHES_TOKEN}"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/raw/*",
+      "origin": "${GHES_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GHES_TOKEN}"
+      }
+    }
+  ]
+}

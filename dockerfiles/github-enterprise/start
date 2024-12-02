@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [ -z "GHES_URL"]; then
+  echo "You must provide GHES_URL"
+  exit 1
+fi
+
+if [ -z "GHES_TOKEN"]; then
+  echo "You must provide GHES_TOKEN"
+  exit 1
+fi
+
+exec broker --verbose --disableBodyVarsSubstitution --disableHeaderVarsSubstitution
