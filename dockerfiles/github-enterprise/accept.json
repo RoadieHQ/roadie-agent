@@ -25,6 +25,5 @@
         "token": "${GHES_TOKEN}"
       }
     }
-
   ]
 }
