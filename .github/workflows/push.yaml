@@ -65,3 +65,10 @@ jobs:
           file: dockerfiles/Dockerfile
           context: dockerfiles/argocd
           tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-argocd,roadiehq/broker:argocd
+      - name: Build GHES
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          file: dockerfiles/Dockerfile
+          context: dockerfiles/github-enterprise
+          tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-github-enterprise,roadiehq/broker:github-enterprise
