@@ -4,6 +4,10 @@ if [ -z "GHES_URL"]; then
   echo "You must provide GHES_URL"
   exit 1
 fi
+if [ -z "GHES_RAW_URL"]; then
+  echo "You must provide GHES_RAW_URL"
+  exit 1
+fi
 
 if [ -z "GHES_TOKEN"]; then
   echo "You must provide GHES_TOKEN"

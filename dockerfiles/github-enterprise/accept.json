@@ -18,8 +18,8 @@
     },
     {
       "method": "GET",
-      "path": "/raw/*",
-      "origin": "${GHES_URL}",
+      "path": "/*",
+      "origin": "${GHES_RAW_URL}",
       "auth": {
         "scheme": "token",
         "token": "${GHES_TOKEN}"
