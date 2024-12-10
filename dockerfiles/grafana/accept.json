@@ -1,0 +1,20 @@
+{
+  "public": [
+    {
+      "//": "Get broker connection status",
+      "method": "GET",
+      "path": "/healthcheck"
+    }
+  ],
+  "private": [
+    {
+      "method": "GET",
+      "path": "/api/*",
+      "origin": "${GRAFANA_URL}",
+      "auth": {
+        "scheme": "bearer",
+        "token": "${GRAFANA_TOKEN}"
+      }
+    },
+  ]
+}
