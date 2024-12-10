@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ -z "$GRAFANA_URL" ]; then
+  echo "You must provide GRAFANA_URL"
+  exit 1
+fi
+
+if [ -z "$GRAFANA_TOKEN" ]; then
+  echo "You must provide GRAFANA_TOKEN"
+  exit 1
+fi
+
+echo 'asdfsdfa'
+
+
+exec broker --verbose --disableBodyVarsSubstitution --disableHeaderVarsSubstitution

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-if [ -z "ARGOCD_URL"]; then
+if [ -z "$ARGOCD_URL" ]; then
   echo "You must provide ARGOCD_URL"
   exit 1
 fi
 
-if [ -z "ARGOCD_AUTH_TOKEN"]; then
+if [ -z "$ARGOCD_AUTH_TOKEN" ]; then
   echo "You must provide ARGOCD_AUTH_TOKEN"
   exit 1
 fi

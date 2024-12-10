@@ -37,6 +37,13 @@ jobs:
           file: dockerfiles/Dockerfile
           context: dockerfiles/kubernetes
           tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-kubernetes,roadiehq/broker:kubernetes
+      - name: Build Grafana
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          file: dockerfiles/Dockerfile
+          context: dockerfiles/grafana
+          tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-grafana,roadiehq/broker:grafana
       - name: Build Sonarqube
         uses: docker/build-push-action@v4
         with:
