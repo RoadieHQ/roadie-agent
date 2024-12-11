@@ -60,6 +60,15 @@
         "scheme": "bearer",
         "token": "${ARGOCD_AUTH_TOKEN}"
       }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/session",
+      "origin": "${ARGOCD_URL}",
+      "auth": {
+        "scheme": "bearer",
+        "token": "${ARGOCD_AUTH_TOKEN}"
+      }
     }
 
   ]
