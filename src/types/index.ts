@@ -1,4 +1,4 @@
-import { EntityProviderMutation } from '@backstage/plugin-catalog-node';
+import { Entity } from '@backstage/catalog-model';
 
 export type AvailableAgents =
   | 'entity-provider'
@@ -68,4 +68,21 @@ export type HandlerConfig = {
    * Port to use for the local Roadie Agent that handles events. Defaults to 7044
    */
   port: number;
+};
+
+export type DeferredEntity = {
+  entity: Entity;
+  locationKey?: string;
+};
+
+export type EntityProviderMutation = {
+  type: 'full';
+  entities: DeferredEntity[];
+} | {
+  type: 'delta';
+  added: DeferredEntity[];
+  removed: (DeferredEntity | {
+    entityRef: string;
+    locationKey?: string;
+  })[];
 };
