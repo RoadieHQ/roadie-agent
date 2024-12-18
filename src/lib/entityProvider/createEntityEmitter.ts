@@ -1,7 +1,7 @@
-import { EntityProviderMutation } from '@backstage/plugin-catalog-node';
 import { AGENT_ENTITY_PROVIDER_PATH } from '@/entityProvider/constants';
 import fetch from 'node-fetch';
 import { getLogger } from '@/logger';
+import { EntityProviderMutation } from '$/types';
 
 export const createEntityEmitter = (
   target: string,
