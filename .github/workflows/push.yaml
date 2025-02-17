@@ -28,6 +28,7 @@ jobs:
         with:
           push: true
           tags: roadiehq/broker:base
+          platforms: linux/amd64,linux/arm64
           context: dockerfiles
           file: dockerfiles/base.Dockerfile
       - name: Build Kubernetes
@@ -35,6 +36,7 @@ jobs:
         with:
           push: true
           file: dockerfiles/Dockerfile
+          platforms: linux/amd64,linux/arm64
           context: dockerfiles/kubernetes
           tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-kubernetes,roadiehq/broker:kubernetes
       - name: Build Grafana
@@ -42,6 +44,7 @@ jobs:
         with:
           push: true
           file: dockerfiles/Dockerfile
+          platforms: linux/amd64,linux/arm64
           context: dockerfiles/grafana
           tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-grafana,roadiehq/broker:grafana
       - name: Build Sonarqube
@@ -49,6 +52,7 @@ jobs:
         with:
           push: true
           file: dockerfiles/Dockerfile
+          platforms: linux/amd64,linux/arm64
           context: dockerfiles/sonarqube
           tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-sonarqube,roadiehq/broker:sonarqube
       - name: Build Jenkins
@@ -56,6 +60,7 @@ jobs:
         with:
           push: true
           file: dockerfiles/Dockerfile
+          platforms: linux/amd64,linux/arm64
           context: dockerfiles/jenkins
           tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-jenkins,roadiehq/broker:jenkins
       - name: Build Cost Insights
@@ -63,6 +68,7 @@ jobs:
         with:
           push: true
           file: dockerfiles/Dockerfile
+          platforms: linux/amd64,linux/arm64
           context: dockerfiles/cost-insights
           tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-cost-insights,roadiehq/broker:cost-insights
       - name: Build ArgoCD
@@ -70,6 +76,7 @@ jobs:
         with:
           push: true
           file: dockerfiles/Dockerfile
+          platforms: linux/amd64,linux/arm64
           context: dockerfiles/argocd
           tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-argocd,roadiehq/broker:argocd
       - name: Build GHES
@@ -77,5 +84,6 @@ jobs:
         with:
           push: true
           file: dockerfiles/Dockerfile
+          platforms: linux/amd64,linux/arm64
           context: dockerfiles/github-enterprise
           tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-github-enterprise,roadiehq/broker:github-enterprise
