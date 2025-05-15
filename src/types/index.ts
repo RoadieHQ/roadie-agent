@@ -75,14 +75,19 @@ export type DeferredEntity = {
   locationKey?: string;
 };
 
-export type EntityProviderMutation = {
-  type: 'full';
-  entities: DeferredEntity[];
-} | {
-  type: 'delta';
-  added: DeferredEntity[];
-  removed: (DeferredEntity | {
-    entityRef: string;
-    locationKey?: string;
-  })[];
-};
+export type EntityProviderMutation =
+  | {
+      type: 'full';
+      entities: DeferredEntity[];
+    }
+  | {
+      type: 'delta';
+      added: DeferredEntity[];
+      removed: (
+        | DeferredEntity
+        | {
+            entityRef: string;
+            locationKey?: string;
+          }
+      )[];
+    };
