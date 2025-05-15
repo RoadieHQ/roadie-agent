@@ -12,8 +12,7 @@ declare module 'snyk-broker' {
     client: boolean;
     port?: number;
   }
-
-  function broker(options: MainOptions): any;
-  const _exported: { main: typeof broker };
+  type broker = (options: MainOptions) => any;
+  const _exported: { main: broker };
   export = _exported;
 }
