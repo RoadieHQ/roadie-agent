@@ -51,6 +51,7 @@ export class CustomScaffolderActionContext implements ScaffolderActionContext {
         `Received response from scaffolder logger. Status: ${response.status}, ${response.statusText}. Body: ${responseBody}`,
       );
     } catch (e) {
+      this.logger.debug(e)
       this.logger.warn(
         `No Response received from scaffolder logger. Status: ${response?.status}, ${response?.statusText}.`,
       );
