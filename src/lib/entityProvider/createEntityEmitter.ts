@@ -30,7 +30,7 @@ export const createEntityEmitter = (
         `Received response from forwarder mutation. Status: ${response.status}, ${response.statusText}. Body: ${responseBody}`,
       );
     } catch (e) {
-      logger.debug(e)
+      logger.debug(e);
       logger.warn(
         `No Response received from forwarder mutation. Status: ${response?.status}, ${response?.statusText}.`,
       );

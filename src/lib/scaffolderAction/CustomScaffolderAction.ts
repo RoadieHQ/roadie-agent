@@ -106,7 +106,7 @@ export class CustomScaffolderAction {
           `Received response when finalizing scaffolder action. Status: ${response.status}, ${response.statusText}. Body: ${responseBody}`,
         );
       } catch (e) {
-        this.logger.debug(e)
+        this.logger.debug(e);
         this.logger.warn(
           `No Response or errored response received when finalizing scaffolder action. Status: ${response?.status}, ${response?.statusText}.`,
         );
