@@ -47,7 +47,7 @@
     "fs-extra": "^11.2.0",
     "node-fetch": "^2.6.13",
     "pino": "^8.15.1",
-    "snyk-broker": "4.215.1",
+    "snyk-broker": "4.161.5",
     "unzipper": "^0.12.1"
   },
   "devDependencies": {
