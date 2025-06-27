@@ -42,3 +42,10 @@ jobs:
           file: dockerfiles/Dockerfile
           context: dockerfiles/jenkins
           tags: roadiehq/broker:pr-${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-jenkins
+      - name: Build bitbucket
+        uses: docker/build-push-action@v4
+        with:
+          push: false
+          file: dockerfiles/Dockerfile
+          context: dockerfiles/bitbucket
+          tags: roadiehq/broker:pr-${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-bitbucket

@@ -87,3 +87,11 @@ jobs:
           platforms: linux/amd64,linux/arm64
           context: dockerfiles/github-enterprise
           tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-github-enterprise,roadiehq/broker:github-enterprise
+      - name: Build Bitbucket
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          file: dockerfiles/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          context: dockerfiles/github-bitbucket
+          tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-github-bitbucket,roadiehq/broker:github-bitbucket
