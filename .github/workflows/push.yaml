@@ -93,5 +93,5 @@ jobs:
           push: true
           file: dockerfiles/Dockerfile
           platforms: linux/amd64,linux/arm64
-          context: dockerfiles/github-bitbucket
-          tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-github-bitbucket,roadiehq/broker:github-bitbucket
+          context: dockerfiles/github-bitbucket-server
+          tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-github-bitbucket-server,roadiehq/broker:github-bitbucket-server
