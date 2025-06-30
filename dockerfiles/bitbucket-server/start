@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [ -z "$BITBUCKET_URL" ]; then
+  echo "You must provide BITBUCKET_URL"
+  exit 1
+fi
+
+if [ -z "$BITBUCKET_AUTH_TOKEN" ]; then
+  echo "You must provide BITBUCKET_AUTH_TOKEN"
+  exit 1
+fi
+
+
+exec broker --verbose --disableBodyVarsSubstitution --disableHeaderVarsSubstitution
