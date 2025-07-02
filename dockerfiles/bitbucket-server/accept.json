@@ -8,43 +8,39 @@
   ],
   "private": [
     {
-      "//": "list the user's projects",
       "method": "GET",
-      "path": "/projects",
+      "path": "/rest/api/1.0/projects",
       "origin": "${BITBUCKET_URL}",
       "auth": {
         "scheme": "bearer",
-        "username": "${BITBUCKET_AUTH_TOKEN}"
+        "token": "${BITBUCKET_AUTH_TOKEN}"
       }
     },
     {
-      "//": "list the user's projects",
       "method": "GET",
-      "path": "/projects/*",
+      "path": "/rest/api/1.0/projects/*",
       "origin": "${BITBUCKET_URL}",
       "auth": {
         "scheme": "bearer",
-        "username": "${BITBUCKET_AUTH_TOKEN}"
+        "token": "${BITBUCKET_AUTH_TOKEN}"
       }
     },
     {
-      "//": "list the user's repositories",
       "method": "GET",
-      "path": "/repositories",
+      "path": "/rest/api/1.0/repositories",
       "origin": "${BITBUCKET_URL}",
       "auth": {
         "scheme": "bearer",
-        "username": "${BITBUCKET_AUTH_TOKEN}"
+        "token": "${BITBUCKET_AUTH_TOKEN}"
       }
     },
     {
-      "//": "list the user's repositories",
       "method": "GET",
-      "path": "/repositories/*",
+      "path": "/rest/api/1.0/repositories/*",
       "origin": "${BITBUCKET_URL}",
       "auth": {
         "scheme": "bearer",
-        "username": "${BITBUCKET_AUTH_TOKEN}"
+        "token": "${BITBUCKET_AUTH_TOKEN}"
       }
     }
   ]
