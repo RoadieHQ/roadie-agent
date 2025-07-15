@@ -1,6 +1,7 @@
 FROM roadiehq/broker:base AS base
 
-MAINTAINER Roadie
+LABEL maintainer="Roadie <engineering@roadie.io>"
+
 
 USER root
 
@@ -15,12 +16,9 @@ RUN if [ -n "$BROKER_VERSION" ]; then \
     npm install --global snyk-broker@$BROKER_VERSION; \
     else \
     npm install --global snyk-broker; \
-    fi \
+    fi
 
-FROM roadiehq/broker:base
 ENV PATH=$PATH:/home/node/.npm-global/bin
-COPY --from=base /home/node/.npm-global /home/node/.npm-global
-COPY --from=base /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 USER root
 
