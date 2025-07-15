@@ -1,4 +1,4 @@
-FROM roadiehq/broker:base as base
+FROM roadiehq/broker:base AS base
 
 MAINTAINER Roadie
 
@@ -8,15 +8,14 @@ RUN node --version
 RUN apt-get update && apt-get install -y ca-certificates
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
-RUN npm install --global snyk-broker@4.207.0
 
-# Removing debug@0.7.4 (setheader transitive) to satisfy some scanners still reporting this false positive
-RUN rm -rf /home/node/.npm-global/lib/node_modules/snyk-broker/node_modules/setheader/node_modules/debug
+ARG BROKER_VERSION
 
-
-RUN rm -rf /home/node/.npm-global/lib/node_modules/snyk-broker/node_modules/tough-cookie
-RUN npm i -g tough-cookie@4.1.3
-RUN mv /home/node/.npm-global/lib/node_modules/tough-cookie /home/node/.npm-global/lib/node_modules/snyk-broker/node_modules
+RUN if [ -n "$BROKER_VERSION" ]; then \
+    npm install --global snyk-broker@$BROKER_VERSION; \
+    else \
+    npm install --global snyk-broker; \
+    fi \
 
 FROM roadiehq/broker:base
 ENV PATH=$PATH:/home/node/.npm-global/bin

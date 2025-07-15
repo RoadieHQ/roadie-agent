@@ -7,8 +7,30 @@ on:
 
 jobs:
   build-containers:
+    env:
+      BROKER_VERSION: 4.217.4
     runs-on:
       labels: ubuntu-latest
+
+    strategy:
+      matrix:
+        service:
+          - name: kubernetes
+            context: dockerfiles/kubernetes
+          - name: grafana
+            context: dockerfiles/grafana
+          - name: sonarqube
+            context: dockerfiles/sonarqube
+          - name: jenkins
+            context: dockerfiles/jenkins
+          - name: cost-insights
+            context: dockerfiles/cost-insights
+          - name: argocd
+            context: dockerfiles/argocd
+          - name: github-enterprise
+            context: dockerfiles/github-enterprise
+          - name: bitbucket-server
+            context: dockerfiles/bitbucket-server
 
     steps:
       - uses: actions/checkout@v3
@@ -31,67 +53,13 @@ jobs:
           platforms: linux/amd64,linux/arm64
           context: dockerfiles
           file: dockerfiles/base.Dockerfile
-      - name: Build Kubernetes
+      - name: Build ${{ matrix.service.name }}
         uses: docker/build-push-action@v4
         with:
           push: true
           file: dockerfiles/Dockerfile
           platforms: linux/amd64,linux/arm64
-          context: dockerfiles/kubernetes
-          tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-kubernetes,roadiehq/broker:kubernetes
-      - name: Build Grafana
-        uses: docker/build-push-action@v4
-        with:
-          push: true
-          file: dockerfiles/Dockerfile
-          platforms: linux/amd64,linux/arm64
-          context: dockerfiles/grafana
-          tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-grafana,roadiehq/broker:grafana
-      - name: Build Sonarqube
-        uses: docker/build-push-action@v4
-        with:
-          push: true
-          file: dockerfiles/Dockerfile
-          platforms: linux/amd64,linux/arm64
-          context: dockerfiles/sonarqube
-          tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-sonarqube,roadiehq/broker:sonarqube
-      - name: Build Jenkins
-        uses: docker/build-push-action@v4
-        with:
-          push: true
-          file: dockerfiles/Dockerfile
-          platforms: linux/amd64,linux/arm64
-          context: dockerfiles/jenkins
-          tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-jenkins,roadiehq/broker:jenkins
-      - name: Build Cost Insights
-        uses: docker/build-push-action@v4
-        with:
-          push: true
-          file: dockerfiles/Dockerfile
-          platforms: linux/amd64,linux/arm64
-          context: dockerfiles/cost-insights
-          tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-cost-insights,roadiehq/broker:cost-insights
-      - name: Build ArgoCD
-        uses: docker/build-push-action@v4
-        with:
-          push: true
-          file: dockerfiles/Dockerfile
-          platforms: linux/amd64,linux/arm64
-          context: dockerfiles/argocd
-          tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-argocd,roadiehq/broker:argocd
-      - name: Build GHES
-        uses: docker/build-push-action@v4
-        with:
-          push: true
-          file: dockerfiles/Dockerfile
-          platforms: linux/amd64,linux/arm64
-          context: dockerfiles/github-enterprise
-          tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-github-enterprise,roadiehq/broker:github-enterprise
-      - name: Build Bitbucket
-        uses: docker/build-push-action@v4
-        with:
-          push: true
-          file: dockerfiles/Dockerfile
-          platforms: linux/amd64,linux/arm64
-          context: dockerfiles/bitbucket-server
-          tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-bitbucket-server,roadiehq/broker:bitbucket-server
+          context: ${{ matrix.service.context }}
+          tags: roadiehq/broker:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-${{ matrix.service.name }},roadiehq/broker:${{ matrix.service.name }}
+          build-args: |
+            "BROKER_VERSION=${{ env.BROKER_VERSION }}"
