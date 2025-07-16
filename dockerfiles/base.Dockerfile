@@ -95,10 +95,6 @@ RUN apt update && \
     apt install --assume-yes ca-certificates
 RUN npm install --global snyk-broker
 
-# removing non-used (transitive) dependencies to fix vulnerabilities
-RUN rm -rf /home/node/.npm-global/lib/node_modules/snyk-broker/node_modules/setheader/node_modules/debug
-
-
 FROM node-base
 
 LABEL org.opencontainers.image.authors="engineering@roadie.io" \

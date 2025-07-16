@@ -22,6 +22,10 @@ ENV PATH=$PATH:/home/node/.npm-global/bin
 
 USER root
 
+# removing non-used (transitive) dependencies to fix vulnerabilities
+RUN rm -rf /home/node/.npm-global/lib/node_modules/snyk-broker/node_modules/setheader/node_modules/debug
+
+
 RUN apt-get update && apt-get install -y curl
 # Don't run as root
 WORKDIR /home/node
