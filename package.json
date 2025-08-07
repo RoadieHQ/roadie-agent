@@ -35,6 +35,9 @@
     "build-live": "tsc -w && tsc-alias -w"
   },
   "license": "Apache-2.0",
+  "resolutions": {
+    "strip-ansi": "^6.0.1"
+  },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.515.0",
     "@aws-sdk/lib-storage": "^3.515.0",
@@ -47,11 +50,12 @@
     "fs-extra": "^11.2.0",
     "node-fetch": "^2.6.13",
     "pino": "^8.15.1",
-    "snyk-broker": "4.161.5",
+    "//": "snyk-broker version must match version in push.yaml file",
+    "snyk-broker": "4.217.4",
     "unzipper": "^0.12.1"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.4",
+    "@changesets/cli": "^2.14.0",
     "@octokit/rest": "^21.1.1",
     "@types/archiver": "^6.0.2",
     "@types/chai": "^4.2.18",

@@ -8,7 +8,7 @@ on:
 jobs:
   build-containers:
     env:
-      BROKER_VERSION: 4.217.4
+      BROKER_VERSION: 4.217.4 # STOP: This version must match version in package.json file
     runs-on:
       labels: ubuntu-latest
 
