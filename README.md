@@ -17,38 +17,58 @@ The agent webserver runs by default in `http://localhost:7044` and has a specifi
 
 1. Run `npm install @roadiehq/roadie-agent` or `yarn add @roadiehq/roadie-agent` (or equivalent) depending on your preferred choice of package manager.
 2. Run `npm install` or `yarn` (or equivalent).
+3. Copy `config.default.json` file from the installed packages config folder into the root of your application. Alternatively the default configuration can be copy-pasted from below:
+    <details>
 
-(With default settings) Create a folder called `config` at the root of your project and copy `accept.json` file from the installed packages config folder into it. Alternatively the default configuration can be copy-pasted from below:
-<details>
+    <summary>Click to expand</summary>
 
-<summary>Click to expand</summary>
-
-
-```json
-{
-  "private": [
+    ```json
     {
-      "method": "GET",
-      "path": "/agent-provider/*",
-      "origin": "http://localhost:7044"
-    }  ,
-    {
-      "method": "POST",
-      "path": "/scaffolder-action/*",
-      "origin": "http://localhost:7044"
+      "REMOTE_WORKLOAD_NAME":"BrokerWorkload",
+      "REMOTE_WORKLOAD_MODULE_PATH":"../broker-workload/websocketRequests",
+      "CONNECTIONS_MANAGER": {
+        "watcher": {
+          "interval": 60000
+        }
+      },
+      "BROKER_SERVER_UNIVERSAL_CONFIG_ENABLED": false,
+      "BROKER_CLIENT_CONFIGURATION": {},
+      "FILTER_RULES_PATHS": {}
     }
-  ],
-  "public": [
+    
+    ```
+    
+    </details>
+
+4. (With default settings) Create a folder called `config` at the root of your project and copy `accept.json` file from the installed packages config folder into it. Alternatively the default configuration can be copy-pasted from below:
+    <details>
+    
+    <summary>Click to expand</summary>
+    
+    ```json
     {
-      "method": "any",
-      "path": "/*"
+      "private": [
+        {
+          "method": "GET",
+          "path": "/agent-provider/*",
+          "origin": "http://localhost:7044"
+        }  ,
+        {
+          "method": "POST",
+          "path": "/scaffolder-action/*",
+          "origin": "http://localhost:7044"
+        }
+      ],
+      "public": [
+        {
+          "method": "any",
+          "path": "/*"
+        }
+      ]
     }
-  ]
-}
-
-```
-
-</details>
+    ```
+    
+    </details>
 
 ## Usage
 

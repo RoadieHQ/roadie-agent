@@ -1,4 +1,4 @@
-import broker from 'snyk-broker';
+import { app as broker } from 'snyk-broker';
 import { RoadieAgentConfiguration } from '$/types';
 import { getLogger } from '@/logger';
 
@@ -12,7 +12,7 @@ export const initializeBrokerConnection = ({
   logger.info(
     `Initializing broker connection to server ${server} with token ${identifier}. Running local broker client on URL http://localhost:${port}`,
   );
-  broker.main({
+  broker({
     client: true,
     config: {
       brokerServerUrl: server,

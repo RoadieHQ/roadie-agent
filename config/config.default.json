@@ -1,0 +1,12 @@
+{
+  "REMOTE_WORKLOAD_NAME":"BrokerWorkload",
+  "REMOTE_WORKLOAD_MODULE_PATH":"../broker-workload/websocketRequests",
+  "CONNECTIONS_MANAGER": {
+    "watcher": {
+      "interval": 60000
+    }
+  },
+  "BROKER_SERVER_UNIVERSAL_CONFIG_ENABLED": false,
+  "BROKER_CLIENT_CONFIGURATION": {},
+  "FILTER_RULES_PATHS": {}
+}
