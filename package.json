@@ -50,7 +50,6 @@
     "fs-extra": "^11.2.0",
     "node-fetch": "^2.6.13",
     "pino": "^8.15.1",
-    "//": "snyk-broker version must match version in push.yaml file",
     "snyk-broker": "4.217.4",
     "unzipper": "^0.12.1"
   },
