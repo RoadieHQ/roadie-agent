@@ -22,7 +22,7 @@
     "build/lib/**/*",
     "build/index.*",
     "build/types/**/*",
-    "config/accept.json"
+    "build/config/**/*"
   ],
   "scripts": {
     "test": "yarn build && mocha --inspect --require source-map-support/register --bail ./build/test/",
