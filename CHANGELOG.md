@@ -1,5 +1,11 @@
 ## [0.0.1-alpha](https://github.com/RoadieHQ/roadie-agent/compare/v0.0.1-alpha2...v0.0.1-alpha) (2022-12-05)
 
+## 2.0.0
+
+### Major Changes
+
+- fc4c286: Update embedded config file
+
 ## 1.3.1
 
 ### Patch Changes
