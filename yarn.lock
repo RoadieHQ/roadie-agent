@@ -2480,7 +2480,7 @@ axios-retry@^3.9.1:
     "@babel/runtime" "^7.15.4"
     is-retry-allowed "^2.2.0"
 
-axios@^1.8.3:
+axios@1.11.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.11.0.tgz#c2ec219e35e414c025b2095e8b8280278478fdb6"
   integrity sha512-1Lx3WLFQWm3ooKDYZD1eXmoGO9fxYQjrycfHFC8P0sCfQVXyROp0p9PFWBehewBOdCwHc+f/b8I0fMto5eSfwA==
@@ -6160,12 +6160,12 @@ slash@^3.0.0:
   resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
   integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
 
-snyk-broker@4.217.4:
-  version "4.217.4"
-  resolved "https://registry.yarnpkg.com/snyk-broker/-/snyk-broker-4.217.4.tgz#d9fe7d965814b664d0317c81e2f3534efce1ecd5"
-  integrity sha512-O9TtsJed4TDFIieBytFnGMB9K8Q6x7BPvSE7JOhQr7lXthhBZdB57pF5hZuGrQlfgg7K3tAFSbyOPxf+HeeGlQ==
+snyk-broker@4.219.0:
+  version "4.219.0"
+  resolved "https://registry.yarnpkg.com/snyk-broker/-/snyk-broker-4.219.0.tgz#945d34080dadcf0c02bc3200d6207f6cff97d654"
+  integrity sha512-d9JVj4QgAtdLQg6y8prgOfTB2nR5cWicIMebsPEG7aQEdDNEBfrt5R22pu1T2D/iA41Ef0qKlEwLbJzc8YeA4g==
   dependencies:
-    axios "^1.8.3"
+    axios "1.11.0"
     axios-retry "^3.9.1"
     body-parser "^1.20.3"
     bunyan "^1.8.12"
