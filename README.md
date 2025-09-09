@@ -24,8 +24,12 @@ The agent webserver runs by default in `http://localhost:7044` and has a specifi
 
     ```json
     {
-      "REMOTE_WORKLOAD_NAME":"BrokerWorkload",
-      "REMOTE_WORKLOAD_MODULE_PATH":"../broker-workload/websocketRequests",
+      "REMOTE_WORKLOAD_NAME": "BrokerWorkload",
+      "REMOTE_WORKLOAD_MODULE_PATH": "../broker-workload/websocketRequests",
+      "CLIENT_WORKLOAD_NAME": "BrokerClientRequestWorkload",
+      "CLIENT_WORKLOAD_MODULE_PATH": "../broker-workload/clientLocalRequests",
+      "BROKER_SERVER_URL": "https://<>.broker.roadie.so",
+      "PREFLIGHT_CHECKS_ENABLED": "false",
       "CONNECTIONS_MANAGER": {
         "watcher": {
           "interval": 60000
@@ -35,12 +39,12 @@ The agent webserver runs by default in `http://localhost:7044` and has a specifi
       "BROKER_CLIENT_CONFIGURATION": {},
       "FILTER_RULES_PATHS": {}
     }
-    
     ```
     
     </details>
 
-4. (With default settings) Create a folder called `config` at the root of your project and copy `accept.json` file from the installed packages config folder into it. Alternatively the default configuration can be copy-pasted from below:
+4. Modify the `config.default.json` configuration file to contain your BROKER_SERVER_URL.
+5. (With default settings) Create a folder called `config` at the root of your project and copy `accept.json` file from the installed packages config folder into it. Alternatively the default configuration can be copy-pasted from below:
     <details>
     
     <summary>Click to expand</summary>
