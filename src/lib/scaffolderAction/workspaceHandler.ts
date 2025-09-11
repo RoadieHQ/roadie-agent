@@ -20,7 +20,7 @@ export async function downloadFile(
   }
 
   logger.info(`Fetching workspace from URL ${url} (attempt ${attempts + 1}/6)`);
-  
+
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -33,12 +33,12 @@ export async function downloadFile(
 
     // Ensure directory exists
     await fs.ensureDir(path);
-    
+
     const zipPath = `${path}.zip`;
-    
+
     // Download the file with proper error handling
     await pipeline(response.body, fs.createWriteStream(zipPath));
-    
+
     // Verify file exists and has content
     const stats = await fs.stat(zipPath);
     if (stats.size === 0) {
@@ -47,57 +47,58 @@ export async function downloadFile(
       await new Promise((resolve) => setTimeout(resolve, 2000));
       return await downloadFile(url, path, attempts + 1);
     }
-    
+
     logger.info(`Downloaded file size: ${stats.size} bytes`);
-    
+
     // Extract with proper promise handling and error catching
     await new Promise<void>((resolve, reject) => {
       const extractStream = unzipper.Extract({ path: path });
-      
+
       extractStream.on('error', (err) => {
         logger.error('Extraction failed:', err);
         reject(new Error(`Failed to extract ZIP file: ${err.message}`));
       });
-      
+
       extractStream.on('close', () => {
         logger.info('File extracted successfully');
         resolve();
       });
-      
+
       // Add timeout for extraction
       const timeout = setTimeout(() => {
         reject(new Error('Extraction timeout - file may be corrupted'));
       }, 60000); // 60 second timeout
-      
+
       extractStream.on('close', () => {
         clearTimeout(timeout);
         resolve();
       });
-      
+
       const readStream = fs.createReadStream(zipPath);
       readStream.on('error', (err) => {
         logger.error('Read stream error:', err);
         reject(new Error(`Failed to read ZIP file: ${err.message}`));
       });
-      
+
       readStream.pipe(extractStream);
     });
-    
+
     // Clean up the zip file after successful extraction
     await fs.remove(zipPath);
-    
+
     // Verify extraction was successful by checking if directory has content
     const extractedFiles = await fs.readdir(path);
     if (extractedFiles.length === 0) {
       throw new Error('Extraction completed but no files were extracted');
     }
-    
-    logger.info(`File downloaded and extracted successfully. Extracted ${extractedFiles.length} items.`);
+
+    logger.info(
+      `File downloaded and extracted successfully. Extracted ${extractedFiles.length} items.`,
+    );
     return undefined;
-    
   } catch (error: any) {
     logger.error(`Download attempt ${attempts + 1} failed:`, error);
-    
+
     // Clean up any partial files
     try {
       await fs.remove(`${path}.zip`);
@@ -105,16 +106,16 @@ export async function downloadFile(
     } catch (cleanupError) {
       logger.warn('Failed to cleanup partial files:', cleanupError);
     }
-    
+
     if (attempts >= 5) {
       throw error;
     }
-    
+
     // Wait before retry with exponential backoff
     const delay = Math.min(4321 * Math.pow(1.5, attempts), 30000);
     logger.info(`Retrying in ${delay}ms...`);
     await new Promise((resolve) => setTimeout(resolve, delay));
-    
+
     return await downloadFile(url, path, attempts + 1);
   }
 }
