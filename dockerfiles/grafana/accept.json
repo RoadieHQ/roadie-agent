@@ -16,5 +16,14 @@
         "token": "${GRAFANA_TOKEN}"
       }
     },
+    {
+      "method": "GET",
+      "path": "/apis/*",
+      "origin": "${GRAFANA_URL}",
+      "auth": {
+        "scheme": "bearer",
+        "token": "${GRAFANA_TOKEN}"
+      }
+    }
   ]
 }
