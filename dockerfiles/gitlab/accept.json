@@ -1,0 +1,421 @@
+{
+  "public": [
+    {
+      "//": "Get broker connection status",
+      "method": "GET",
+      "path": "/healthcheck"
+    }
+  ],
+  "private": [
+    {
+      "//": "List all projects",
+      "method": "GET",
+      "path": "/api/v4/projects",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Get project by ID",
+      "method": "GET",
+      "path": "/api/v4/projects/:id",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Create a new project",
+      "method": "POST",
+      "path": "/api/v4/projects",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "List projects in a group",
+      "method": "GET",
+      "path": "/api/v4/groups/:id/projects",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Get commits for a branch/path",
+      "method": "GET",
+      "path": "/api/v4/projects/:id/repository/commits",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Download repository archive",
+      "method": "GET",
+      "path": "/api/v4/projects/:id/repository/archive",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Get raw file content",
+      "method": "GET",
+      "path": "/api/v4/projects/:id/repository/files/:file_path/raw",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Check if file exists",
+      "method": "HEAD",
+      "path": "/api/v4/projects/:id/repository/files/:file_path",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Get job artifacts",
+      "method": "GET",
+      "path": "/api/v4/projects/:id/jobs/artifacts/:ref_name/raw/*artifact_path",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Get file details",
+      "method": "GET",
+      "path": "/api/v4/projects/:id/repository/files/:file_path",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Get repository tree",
+      "method": "GET",
+      "path": "/api/v4/projects/:id/repository/tree",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "List all users",
+      "method": "GET",
+      "path": "/api/v4/users",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Get user by ID",
+      "method": "GET",
+      "path": "/api/v4/users/:id",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Get current user",
+      "method": "GET",
+      "path": "/api/v4/user",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Get user's projects",
+      "method": "GET",
+      "path": "/api/v4/users/:id/projects",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "List all groups",
+      "method": "GET",
+      "path": "/api/v4/groups",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Get group by ID",
+      "method": "GET",
+      "path": "/api/v4/groups/:id",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Create a group",
+      "method": "POST",
+      "path": "/api/v4/groups",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "List all group members",
+      "method": "GET",
+      "path": "/api/v4/groups/:id/members/all",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Show namespace details",
+      "method": "GET",
+      "path": "/api/v4/namespaces/:id",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Add project member",
+      "method": "POST",
+      "path": "/api/v4/projects/:id/members",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Create a branch",
+      "method": "POST",
+      "path": "/api/v4/projects/:id/repository/branches",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Show branch details",
+      "method": "GET",
+      "path": "/api/v4/projects/:id/repository/branches/:branch",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Protect a branch",
+      "method": "POST",
+      "path": "/api/v4/projects/:id/protected_branches",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Create a commit",
+      "method": "POST",
+      "path": "/api/v4/projects/:id/repository/commits",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Create project variable",
+      "method": "POST",
+      "path": "/api/v4/projects/:id/variables",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Create an issue",
+      "method": "POST",
+      "path": "/api/v4/projects/:id/issues",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Edit an issue",
+      "method": "PUT",
+      "path": "/api/v4/projects/:id/issues/:issue_iid",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Create a merge request",
+      "method": "POST",
+      "path": "/api/v4/projects/:id/merge_requests",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "List merge requests",
+      "method": "GET",
+      "path": "/api/v4/projects/:id/merge_requests",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Show merge request details",
+      "method": "GET",
+      "path": "/api/v4/projects/:id/merge_requests/:merge_request_iid",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Edit merge request",
+      "method": "PUT",
+      "path": "/api/v4/projects/:id/merge_requests/:merge_request_iid",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Get merge request approval rules",
+      "method": "GET",
+      "path": "/api/v4/projects/:id/merge_requests/:merge_request_iid/approval_rules",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Create pipeline trigger token",
+      "method": "POST",
+      "path": "/api/v4/projects/:id/triggers",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Trigger a pipeline",
+      "method": "POST",
+      "path": "/api/v4/projects/:id/trigger/pipeline",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Delete pipeline trigger token",
+      "method": "DELETE",
+      "path": "/api/v4/projects/:id/triggers/:trigger_id",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Create project access token",
+      "method": "POST",
+      "path": "/api/v4/projects/:id/access_tokens",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Create deploy token",
+      "method": "POST",
+      "path": "/api/v4/projects/:id/deploy_tokens",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "List all epics in a group",
+      "method": "GET",
+      "path": "/api/v4/groups/:id/epics",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "Create a migration/bulk import",
+      "method": "POST",
+      "path": "/api/v4/bulk_imports",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    },
+    {
+      "//": "GraphQL endpoint for descendant groups and group members",
+      "method": "POST",
+      "path": "/api/graphql",
+      "origin": "${GITLAB_URL}",
+      "auth": {
+        "scheme": "token",
+        "token": "${GITLAB_TOKEN}"
+      }
+    }
+  ]
+}
