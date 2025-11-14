@@ -31,6 +31,8 @@ jobs:
             context: dockerfiles/github-enterprise
           - name: bitbucket-server
             context: dockerfiles/bitbucket-server
+          - name: gitlab-self-hosted
+            context: dockerfiles/gitlab-self-hosted
 
     steps:
       - uses: actions/checkout@v3

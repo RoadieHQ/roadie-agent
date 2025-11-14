@@ -49,3 +49,10 @@ jobs:
           file: dockerfiles/Dockerfile
           context: dockerfiles/bitbucket-server
           tags: roadiehq/broker:pr-${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-bitbucket-server
+      - name: Build GitLab Self-Hosted
+        uses: docker/build-push-action@v4
+        with:
+          push: false
+          file: dockerfiles/Dockerfile
+          context: dockerfiles/gitlab-self-hosted
+          tags: roadiehq/broker:pr-${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}-gitlab-self-hosted
