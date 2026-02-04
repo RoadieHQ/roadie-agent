@@ -7,8 +7,9 @@ export type AvailableAgents =
 
 export interface ScaffolderActionContext {
   log: (content: string, context?: Record<string, string>) => Promise<void>;
+  output: (name: string, value: unknown) => void;
   workspacePath: string;
-  payload: { body: Record<string, string> };
+  payload: { body: Record<string, any> };
 }
 
 export interface AgentConfiguration<
@@ -25,7 +26,7 @@ export interface EntityProviderAgentConfiguration
 
 export interface ScaffolderActionAgentConfiguration
   extends AgentConfiguration<'scaffolder-action'> {
-  handler: (context: ScaffolderActionContext) => Promise<void>;
+  handler: (context: ScaffolderActionContext) => Promise<any>;
 }
 
 export type TechInsightsDataSourceAgentConfiguration =

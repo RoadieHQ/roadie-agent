@@ -33,7 +33,7 @@ export class CustomScaffolderAction {
     configuration: ScaffolderActionAgentConfiguration;
     brokerClientUrl: string;
     payload: {
-      body: Record<string, string>;
+      body: Record<string, any>;
       putPresign?: string;
       getPresign?: string;
     };
@@ -63,14 +63,15 @@ export class CustomScaffolderAction {
 
       await this.configuration.handler(this.context);
 
+      const outputs = this.context.getOutputs();
       if (this.putPresign && this.putPresign !== '') {
         const etag = await generateAndStreamZipfileToS3(
           this.putPresign,
           this.localWorkspacePath,
         );
-        await this.finalizeAction('success', { workspace: true, etag });
+        await this.finalizeAction('success', { workspace: true, etag, ...outputs });
       } else {
-        await this.finalizeAction('success', {});
+        await this.finalizeAction('success', { ...outputs });
       }
     } catch (e: any) {
       this.logger.error('Failed to run scaffolder action');

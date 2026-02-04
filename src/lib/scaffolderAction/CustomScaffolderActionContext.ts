@@ -8,9 +8,10 @@ export class CustomScaffolderActionContext implements ScaffolderActionContext {
   private readonly brokerClientUrl: string;
   private readonly logger: BaseLogger;
   private readonly actionId: string;
+  private readonly outputs: Record<string, unknown> = {};
 
   readonly workspacePath: string;
-  readonly payload: { body: Record<string, string> };
+  readonly payload: { body: Record<string, any> };
 
   constructor({
     brokerClientUrl,
@@ -20,13 +21,13 @@ export class CustomScaffolderActionContext implements ScaffolderActionContext {
     brokerClientUrl: string;
     actionId: string;
     payload: {
-      body: Record<string, string>;
+      body: Record<string, any>;
       localWorkspacePath: string;
     };
   }) {
     this.brokerClientUrl = brokerClientUrl;
     this.actionId = actionId;
-    this.payload = payload;
+    this.payload = { body: payload.body };
     this.workspacePath = payload.localWorkspacePath;
     this.logger = getLogger('RoadieAgentForwarder');
   }
@@ -56,5 +57,13 @@ export class CustomScaffolderActionContext implements ScaffolderActionContext {
         `No Response received from scaffolder logger. Status: ${response?.status}, ${response?.statusText}.`,
       );
     }
+  }
+
+  output(name: string, value: unknown) {
+    this.outputs[name] = value;
+  }
+
+  getOutputs(): Record<string, unknown> {
+    return this.outputs;
   }
 }
