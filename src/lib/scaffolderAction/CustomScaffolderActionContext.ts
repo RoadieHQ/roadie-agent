@@ -1,8 +1,9 @@
 import fetch from 'node-fetch';
 import { getLogger } from '@/logger';
 import { BaseLogger } from 'pino';
-import { ScaffolderActionContext } from '$/types';
+import { JsonValue, ScaffolderActionContext } from '$/types';
 import { AGENT_SCAFFOLDER_LOG_PATH } from '@/scaffolderAction/constants';
+
 
 export class CustomScaffolderActionContext implements ScaffolderActionContext {
   private readonly brokerClientUrl: string;
@@ -11,7 +12,7 @@ export class CustomScaffolderActionContext implements ScaffolderActionContext {
   private readonly outputs: Record<string, unknown> = {};
 
   readonly workspacePath: string;
-  readonly payload: { body: Record<string, any> };
+  readonly payload: { body: Record<string, JsonValue> };
 
   constructor({
     brokerClientUrl,
@@ -21,7 +22,7 @@ export class CustomScaffolderActionContext implements ScaffolderActionContext {
     brokerClientUrl: string;
     actionId: string;
     payload: {
-      body: Record<string, any>;
+      body: Record<string, JsonValue>;
       localWorkspacePath: string;
     };
   }) {
