@@ -21,7 +21,10 @@ describe('CustomScaffolderAction', () => {
   beforeEach(() => {
     fetchStub = sinon.stub(nodeFetchModule, 'default' as any);
     downloadFileStub = sinon.stub(workspaceHandler, 'downloadFile');
-    generateAndStreamZipfileToS3Stub = sinon.stub(workspaceHandler, 'generateAndStreamZipfileToS3');
+    generateAndStreamZipfileToS3Stub = sinon.stub(
+      workspaceHandler,
+      'generateAndStreamZipfileToS3',
+    );
     addRunningActionStub = sinon.stub(runtimeContext, 'addRunningAction');
     removeRunningActionStub = sinon.stub(runtimeContext, 'removeRunningAction');
     handlerStub = sinon.stub().resolves();
@@ -61,9 +64,17 @@ describe('CustomScaffolderAction', () => {
     await action.start();
 
     sinon.assert.calledWith(addRunningActionStub, actionId);
-    sinon.assert.calledWith(downloadFileStub, 'http://get.url', `/tmp/scaffolder/${actionId}`);
+    sinon.assert.calledWith(
+      downloadFileStub,
+      'http://get.url',
+      `/tmp/scaffolder/${actionId}`,
+    );
     sinon.assert.calledOnce(handlerStub);
-    sinon.assert.calledWith(generateAndStreamZipfileToS3Stub, 'http://put.url', `/tmp/scaffolder/${actionId}`);
+    sinon.assert.calledWith(
+      generateAndStreamZipfileToS3Stub,
+      'http://put.url',
+      `/tmp/scaffolder/${actionId}`,
+    );
     sinon.assert.calledWith(removeRunningActionStub, actionId);
 
     sinon.assert.calledWith(
@@ -96,7 +107,7 @@ describe('CustomScaffolderAction', () => {
     sinon.assert.notCalled(downloadFileStub);
     sinon.assert.calledOnce(handlerStub);
     sinon.assert.notCalled(generateAndStreamZipfileToS3Stub);
-    
+
     sinon.assert.calledWith(
       fetchStub,
       sinon.match.any,
@@ -175,10 +186,13 @@ describe('CustomScaffolderAction', () => {
 
     await action.start();
 
-    sinon.assert.calledWith(handlerStub, sinon.match({
-      payload: {
-        body: { count: 123, active: true, nested: { key: 'value' } }
-      }
-    }));
+    sinon.assert.calledWith(
+      handlerStub,
+      sinon.match({
+        payload: {
+          body: { count: 123, active: true, nested: { key: 'value' } },
+        },
+      }),
+    );
   });
 });

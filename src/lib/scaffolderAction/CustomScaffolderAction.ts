@@ -69,7 +69,11 @@ export class CustomScaffolderAction {
           this.putPresign,
           this.localWorkspacePath,
         );
-        await this.finalizeAction('success', { workspace: true, etag, ...outputs });
+        await this.finalizeAction('success', {
+          workspace: true,
+          etag,
+          ...outputs,
+        });
       } else {
         await this.finalizeAction('success', { ...outputs });
       }
