@@ -4,7 +4,6 @@ import { BaseLogger } from 'pino';
 import { JsonValue, ScaffolderActionContext } from '$/types';
 import { AGENT_SCAFFOLDER_LOG_PATH } from '@/scaffolderAction/constants';
 
-
 export class CustomScaffolderActionContext implements ScaffolderActionContext {
   private readonly brokerClientUrl: string;
   private readonly logger: BaseLogger;

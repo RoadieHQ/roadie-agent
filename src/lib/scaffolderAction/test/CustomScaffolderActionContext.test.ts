@@ -68,7 +68,9 @@ describe('CustomScaffolderActionContext', () => {
     fetchStub.resolves({
       status: 500,
       statusText: 'Internal Server Error',
-      text: async () => { throw new Error('Failed to read'); },
+      text: async () => {
+        throw new Error('Failed to read');
+      },
     } as any);
 
     const context = new CustomScaffolderActionContext({
