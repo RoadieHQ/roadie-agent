@@ -1,4 +1,6 @@
 # Roadie Agent Library
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRoadieHQ%2Froadie-agent.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FRoadieHQ%2Froadie-agent?ref=badge_shield)
+
 
 This repository houses the Roadie Agent as well as dockerfiles for the Snyk Broker configured for different third party services which are published to DockerHub.
 
@@ -278,3 +280,7 @@ const myEntityHandler = async (emit) => {
 </details>
 
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRoadieHQ%2Froadie-agent.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FRoadieHQ%2Froadie-agent?ref=badge_large)
