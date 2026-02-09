@@ -35,6 +35,10 @@ const fakePayload: EntityProviderMutation = {
 };
 
 describe('EntityProvider.entityEmitter', () => {
+  afterEach(() => {
+    sinon.restore();
+  });
+
   it('should emit entity when triggered', async () => {
     const fetchStub = sinon.stub(nodeFetchModule, 'default');
     const connectionToken = 'my-target-broker-connection';

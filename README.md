@@ -144,16 +144,17 @@ The Custom Scaffolder Action agent library allows you to run self-hosted Scaffol
 
 You can create a Roadie Agent driven Custom Scaffolder actions by using the `createRoadieAgentScaffolderAction` helper function. This function expects two arguments, one naming the action itself and a handler to provide the actual custom action logic. Note that the `name` defined in here **needs to match** the one configured in your Roadie instance.
 
-Custom Scaffolder Action handler is a function that receives a `context` callback. This callback contains information about the `payload` appended to the template when run on Roadie, the location of the possible `workspacePath` which has been transferred from Roadie Scaffolder Task to your local Custom Action location and a `log` function which can be used to inform the running Scaffolder Action in Roadie to log events for the end user. You can see the type definition below.  
+Custom Scaffolder Action handler is a function that receives a `context` callback. This callback contains information about the `payload` appended to the template when run on Roadie, the location of the possible `workspacePath` which has been transferred from Roadie Scaffolder Task to your local Custom Action location, a `log` function which can be used to inform the running Scaffolder Action in Roadie to log events for the end user, and an `output` function to pass values back to the Scaffolder workflow. You can see the type definition below.
 
 <details>
 <summary>Show type</summary>
 
 ```typescript
 export interface ScaffolderActionContext {
-  log: (content: string, context?: Record<string, string>) => Promise<void>; 
+  log: (content: string, context?: Record<string, string>) => Promise<void>;
+  output: (name: string, value: unknown) => void;
   workspacePath: string;
-  payload: { body: Record<string, string> };
+  payload: { body: Record<string, any> };
 }
 ```
 </details>
@@ -183,7 +184,7 @@ RoadieAgent.fromConfig(config)
           fs.writeFileSync(
             `${ctx.workspacePath}/test.txt`,
             'new file with new contents',
-          ); 
+          );
           // Writing a new file into the shared workspace
         } catch (err) {
           console.error(err);  // Local logging on the Roadie Agent process
@@ -194,12 +195,16 @@ RoadieAgent.fromConfig(config)
           await new Promise((resolve) => setTimeout(resolve, 1000));
           count++;
           await ctx.log(`hello world`); // Sending a log message to be displayed to the end user
-        } 
+        }
+
+        // Pass outputs back to the scaffolder workflow
+        ctx.output('fileCreated', 'test.txt');
+        ctx.output('iterationCount', count);
       },
     }),
   )
   // Add a second custom scaffolder action
-  // .addScaffolderAction(...) 
+  // .addScaffolderAction(...)
   .start();
 
 ```

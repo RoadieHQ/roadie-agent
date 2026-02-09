@@ -1,16 +1,18 @@
 import fetch from 'node-fetch';
 import { getLogger } from '@/logger';
 import { BaseLogger } from 'pino';
-import { ScaffolderActionContext } from '$/types';
+import { JsonValue, ScaffolderActionContext } from '$/types';
 import { AGENT_SCAFFOLDER_LOG_PATH } from '@/scaffolderAction/constants';
+
 
 export class CustomScaffolderActionContext implements ScaffolderActionContext {
   private readonly brokerClientUrl: string;
   private readonly logger: BaseLogger;
   private readonly actionId: string;
+  private readonly outputs: Record<string, unknown> = {};
 
   readonly workspacePath: string;
-  readonly payload: { body: Record<string, string> };
+  readonly payload: { body: Record<string, JsonValue> };
 
   constructor({
     brokerClientUrl,
@@ -20,13 +22,13 @@ export class CustomScaffolderActionContext implements ScaffolderActionContext {
     brokerClientUrl: string;
     actionId: string;
     payload: {
-      body: Record<string, string>;
+      body: Record<string, JsonValue>;
       localWorkspacePath: string;
     };
   }) {
     this.brokerClientUrl = brokerClientUrl;
     this.actionId = actionId;
-    this.payload = payload;
+    this.payload = { body: payload.body };
     this.workspacePath = payload.localWorkspacePath;
     this.logger = getLogger('RoadieAgentForwarder');
   }
@@ -56,5 +58,13 @@ export class CustomScaffolderActionContext implements ScaffolderActionContext {
         `No Response received from scaffolder logger. Status: ${response?.status}, ${response?.statusText}.`,
       );
     }
+  }
+
+  output(name: string, value: unknown) {
+    this.outputs[name] = value;
+  }
+
+  getOutputs(): Record<string, unknown> {
+    return this.outputs;
   }
 }

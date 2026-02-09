@@ -25,7 +25,7 @@
     "build/config/**/*"
   ],
   "scripts": {
-    "test": "yarn build && mocha --inspect --require source-map-support/register --bail ./build/test/",
+    "test": "yarn build && mocha --inspect --require source-map-support/register --bail './build/**/*.test.js'",
     "build": "rimraf build && tsc && tsc-alias && yarn copy-files",
     "preversion": "yarn lint && yarn build && yarn test",
     "release": "changeset version && yarn prettier --write 'src' && yarn install",
