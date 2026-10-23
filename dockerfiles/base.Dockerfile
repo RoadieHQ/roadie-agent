@@ -3,7 +3,7 @@
 # Note that there's no need to build it; All broker client Dockerfiles use the snyk/ubuntu:latest.
 
 ARG BASE_IMAGE=ubuntu:24.04
-ARG NODE_VERSION=20.19.0
+ARG NODE_VERSION=24.22.1
 
 FROM ${BASE_IMAGE} AS node-base
 
@@ -54,6 +54,7 @@ RUN <<EOF
       108F52B48DB57BB0CC439B2997B01419BD92F80A \
       A363A499291CBBC940DD62E41F10027AF002F8B0 \
       C0D6248439F1D5604AAFFB4021D900FFDB233756 \
+      5BE8A3F6C8A5C01D106C0AD820B1A390B168D356 \
     ; do \
       gpg --batch --keyserver hkp://keys.openpgp.org --recv-keys "$key" || \
       gpg --batch --keyserver hkp://pgp.mit.edu --recv-keys "$key" || \
